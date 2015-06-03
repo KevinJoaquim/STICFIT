@@ -23,28 +23,20 @@ public class Parametre extends MainActivity {
                 startActivity(intent);
             }
         });
-<<<<<<< HEAD
-       /* final Button PersoButton = (Button) findViewById(R.id.infoperso);
-=======
+
+
         final Button PersoButton = (Button) findViewById(R.id.infoperso);
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
         PersoButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 SharedPreferenceManager.instance().persistTimeSpentOnLevel(0);
-<<<<<<< HEAD
-                Intent intent = new Intent(Parametre.this, Perso.class);
-                startActivity(intent);
-            }
-        });
-        */
-=======
+
+
                 Intent intent = new Intent(Parametre.this, InfoPerso.class);
                 startActivity(intent);
             }
         });
-
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
     }
 }
+

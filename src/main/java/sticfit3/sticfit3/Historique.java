@@ -10,10 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
-<<<<<<< HEAD
-import android.widget.CompoundButton;
-=======
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -45,13 +41,13 @@ public class Historique extends AppCompatActivity {
         final ArrayAdapter<PompeBDD> listAdapter = new ArrayAdapter<PompeBDD>(this, android.R.layout.simple_list_item_checked, datasource.getAllComments());
 
         final ListView histoList = (ListView) this.findViewById(R.id.listHisto);
-<<<<<<< HEAD
+
         histoList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         histoList.setAdapter(listAdapter);
         setData(null);
-=======
+
         histoList.setAdapter(listAdapter);
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
+
         histoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private PompeDataSource datasource;
             PompeBDD data = null;
@@ -64,7 +60,7 @@ public class Historique extends AppCompatActivity {
 
                 listAdapter = (ArrayAdapter<PompeBDD>) adapterView.getAdapter();
                 data = listAdapter.getItem(i);
-<<<<<<< HEAD
+
 
                 if(checkedTextView.isChecked()){
                     setData(data);
@@ -74,9 +70,9 @@ public class Historique extends AppCompatActivity {
                 if(histoList.getCheckedItemIds().length > 0  ){
 
                 }
-=======
+
                 setData(data);
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
+
             }
 
 
@@ -91,25 +87,19 @@ public class Historique extends AppCompatActivity {
 
                 PompeBDD data = null;
 
-<<<<<<< HEAD
+
                 if (getLaData() != null) {
-=======
-                if (listAdapter.getCount() > 0) {
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
+
                     long position = 0;
                     // for (int i = 0; i < getListAdapter().getCount(); i++)
                     //{
                     data = getLaData();
                     datasource.deleteComment(data);
                     listAdapter.remove(data);
-<<<<<<< HEAD
+
                     setData(null);
                     //}
                     histoList.clearChoices();
-=======
-
-                    //}
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
 
 
                 }
@@ -117,10 +107,7 @@ public class Historique extends AppCompatActivity {
 
 
             }
-<<<<<<< HEAD
 
-=======
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
         });
     }
 

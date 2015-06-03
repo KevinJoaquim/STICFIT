@@ -64,8 +64,6 @@
 
         </activity>
 
-<<<<<<< HEAD
-=======
         <activity
             android:name=".InfoPerso"
             android:label="Informations Personnel"
@@ -77,7 +75,6 @@
         </activity>
 
 
->>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
 
     </application>
 
