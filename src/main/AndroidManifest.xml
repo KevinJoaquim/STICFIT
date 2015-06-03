@@ -64,6 +64,20 @@
 
         </activity>
 
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".InfoPerso"
+            android:label="Informations Personnel"
+            android:parentActivityName=".Parametre" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sticfit3.sticfit3.Parametre" />
+
+        </activity>
+
+
+>>>>>>> f472e5b435f112df1746e667b45e0e18fdbe52a6
 
     </application>
 
