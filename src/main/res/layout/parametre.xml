@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Infos et aide"
+        android:id="@+id/info"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.68" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:text="informations personnel"
+        android:id="@+id/infoperso"
+        android:layout_weight="0.18" />
+</LinearLayout>
