@@ -44,6 +44,7 @@ public class Historique extends AppCompatActivity {
 
         histoList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         histoList.setAdapter(listAdapter);
+
         setData(null);
 
         histoList.setAdapter(listAdapter);

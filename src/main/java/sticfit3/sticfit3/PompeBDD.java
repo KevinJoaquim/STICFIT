@@ -28,7 +28,7 @@ public class PompeBDD {
     @Override
     public String toString() {
 
-        return serie ;
+        return "Nombre Serie: " + serie ;
     }
 }
 

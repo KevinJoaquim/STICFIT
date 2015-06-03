@@ -33,6 +33,7 @@ public class PompeDataSource {
 
     //crée un nouvel element (il y a que serie pour le moment)
     public PompeBDD createComment(String serie) {
+
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_SERIE, serie);
         long insertId = database.insert(MySQLiteHelper.TABLE_POMPES, null,
