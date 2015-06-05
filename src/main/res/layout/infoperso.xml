@@ -4,88 +4,34 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="103dp">
+    <ListView
+        android:id="@+id/list_info"
+        android:layout_width="match_parent"
+        android:layout_height="208dp"
+        android:layout_weight="0.01" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:text="Vous n&apos;avez pas d&apos;informations personnel !! "
+        android:id="@+id/textView5"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_weight="0.01" />
+
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Votre poids :"
-        android:id="@+id/textPoid" />
+        android:text="Modifier"
+        android:id="@+id/modifier" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="30"
-        android:id="@+id/poids"
-        android:layout_gravity="right" />
-
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="125dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Votre Taille :"
-            android:id="@+id/textTaille" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="30"
-            android:id="@+id/taille"
-            android:layout_gravity="right" />
-
-
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="125dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Votre Age :"
-            android:id="@+id/textAge" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="30"
-            android:id="@+id/age"
-            android:layout_gravity="right" />
-
-
-    </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="125dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Vous êtes :"
-            android:id="@+id/textSexe" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="30"
-            android:id="@+id/sexe"
-            android:layout_gravity="right" />
-
-
-    </LinearLayout>
+        android:text="Ajouter des informations"
+        android:id="@+id/ajout" />
 
 
 </LinearLayout>

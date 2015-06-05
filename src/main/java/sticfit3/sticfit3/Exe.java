@@ -309,14 +309,14 @@ public class Exe extends Activity implements SensorEventListener {
 
                 public void run() {
                     while (timeWhenStopped != 0) {
-                        double calorie = 2.14;
+                        double calorie = 0.14;
                         calfinal = calorie + calfinal;
-                        SystemClock.sleep(10000); // METTRE EN PAUSE LE THREAD PENDANT 1 SECONDE
+                        SystemClock.sleep(1000); // METTRE EN PAUSE LE THREAD PENDANT 1 SECONDE
                         runOnUiThread(new Runnable() { // UNE FACON DE MODIFIER LE THREAD UI (L'AFFICHAGE) DEPUIS L'INTERIEUR D'UN THREAD
                             public void run() {
                                 TextView t2 = (TextView) findViewById(R.id.kl);
                                 String cal = Double.toString(calfinal);
-                                t2.setText(cal.substring(0, 4));
+                                t2.setText(cal.substring(0, 3));
                             }
                         });
                     }

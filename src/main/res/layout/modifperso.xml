@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="73dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Poids : "
+        android:id="@+id/textView"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+    <EditText
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/mpoids"
+        android:hint="Insérer votre poids"
+        android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="73dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Taille : "
+            android:id="@+id/textView2"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mtaille"
+            android:hint="Insérer votre taille"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="73dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age : "
+            android:id="@+id/textView3"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mage"
+            android:hint="Insérer votre taille"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="73dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sexe : "
+            android:id="@+id/textView4"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/msexe"
+            android:hint="Insérer votre taille"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"
+        android:id="@+id/valider"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
+</LinearLayout>

@@ -83,6 +83,15 @@
                 android:value="sticfit3.sticfit3.Historique" />
 
         </activity>
+        <activity
+            android:name=".ModifPerso"
+            android:label="Modifier Informations"
+            android:parentActivityName=".InfoPerso" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sticfit3.sticfit3.InfoPerso" />
+
+        </activity>
 
 
     </application>

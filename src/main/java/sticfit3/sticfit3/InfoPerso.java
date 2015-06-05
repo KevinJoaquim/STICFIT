@@ -1,57 +1,82 @@
 package sticfit3.sticfit3;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 /**
  * Created by kevin on 03/06/2015.
  */
-public class InfoPerso extends Activity {
-    private PersonneDataSource datasource;
+public class InfoPerso extends AppCompatActivity {
+    private InfoDataSource datasource;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infoperso);
 
-        datasource = new PersonneDataSource(this);
+        datasource = new InfoDataSource(this);
         datasource.open();
 
-
-        PersonneBDD personne = null;
-
-        TextView t1 = (TextView) findViewById(R.id.sexe);
-        String nbsexe = t1.getText().toString();
-        String[] sexe = new String[] { nbsexe };
-        int nextInt = new Random().nextInt(1);
+        final ArrayAdapter<InfoBDD> listAdapter = new ArrayAdapter<InfoBDD>(this, android.R.layout.simple_list_item_1, datasource.getAllComments());
 
 
-        TextView t2 = (TextView) findViewById(R.id.age);
-        String nbage = t2.getText().toString();
-        String[] age = new String[] { nbage };
-        int nextInt2 = new Random().nextInt(2);
+        final ListView infoListe = (ListView) this.findViewById(R.id.list_info);
+        infoListe.setAdapter(listAdapter);
+
+        final Button ajout = (Button) findViewById(R.id.ajout);
+        ajout.setVisibility(View.GONE);
+        TextView text = (TextView) findViewById (R.id.textView5);
+        text.setVisibility(View.GONE);
+        final Button modif = (Button) findViewById(R.id.modifier);
+        modif.setVisibility(View.VISIBLE);
+
+        if(listAdapter.getCount() == 0){
+
+            ajout.setVisibility(View.VISIBLE);
+            text.setVisibility(View.VISIBLE);
+            modif.setVisibility(View.GONE);
 
 
-        TextView t3 = (TextView) findViewById(R.id.poids);
-        String nbpoids = t3.getText().toString();
-        String[] poids = new String[] { nbpoids };
-        int nextInt3 = new Random().nextInt(3);
+
+        }
+
+        ajout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(InfoPerso.this, ModifPerso.class);
+                startActivity(intent);
+
+            }
+        });
 
 
-        TextView t4 = (TextView) findViewById(R.id.taille);
-        String nbtaille = t4.getText().toString();
-        String[] taille = new String[] { nbtaille };
-        int nextInt4 = new Random().nextInt(4);
+        modif.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
 
-        personne = datasource.createPerso(sexe[nextInt],taille[nextInt4],age[nextInt2],poids[nextInt3]);
+                Intent intent = new Intent(InfoPerso.this, ModifPerso.class);
+                startActivity(intent);
 
-        Log.i("test"," data :" + personne);
+            }
+        });
+
 
 
     }

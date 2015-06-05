@@ -1,16 +1,16 @@
 package sticfit3.sticfit3;
 
 /**
- * Created by kevin on 03/06/2015.
+ * Created by kevin on 05/06/2015.
  */
-public class PersonneBDD {
-
-    private long id;
-    private String sexe;
-    private String age;
+public class InfoBDD {
+    private Long id;
     private String poids;
     private String taille;
+    private String sexe;
+    private String age;
 
+    public InfoBDD(){}
 
     public String getSexe() {
         return sexe;
@@ -20,12 +20,21 @@ public class PersonneBDD {
         this.sexe = sexe;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getAge() {
         return age;
     }
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public InfoBDD(String poids, String taille){
+        this.poids = poids;
+        this.taille = taille;
     }
 
     public long getId() {
@@ -52,12 +61,8 @@ public class PersonneBDD {
         this.taille = taille;
     }
 
-    // Sera utilisée par ArrayAdapter dans la ListView
-    @Override
-    public String toString() {
-
-        return sexe + taille + age + poids ;
+    public String toString(){
+        return "\n\n\nPoids : "+poids+"\n\n\nTaille : "+taille+"\n\n\nAge : "+age+"\n\n\nSexe : "+sexe;
     }
 }
-
 
