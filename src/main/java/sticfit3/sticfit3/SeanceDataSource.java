@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +19,8 @@ public class SeanceDataSource {
     private SQLiteDatabase database;
     private MySQLiteSeance dbHelper;
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
-            MySQLiteSeance.COLUMN_SEANCE  };
+            MySQLiteSeance.COLUMN_SEANCE,
+            MySQLiteSeance.COLUMN_DATE_SEANCE };
 
     public SeanceDataSource(Context context) {
         dbHelper = new MySQLiteSeance(context);
@@ -32,10 +35,11 @@ public class SeanceDataSource {
     }
 
     //crée un nouvel element (il y a que serie pour le moment)
-    public SeanceBDD createComment(String seance) {
+    public SeanceBDD createComment(String seance, String dateSeance) {
 
         ContentValues values = new ContentValues();
         values.put(MySQLiteSeance.COLUMN_SEANCE, seance);
+        values.put(MySQLiteSeance.COLUMN_DATE_SEANCE, dateSeance);
         long insertId = database.insert(MySQLiteSeance.TABLE_SEANCE, null,
                 values);
         Cursor cursor = database.query(MySQLiteSeance.TABLE_SEANCE,
@@ -45,6 +49,14 @@ public class SeanceDataSource {
         SeanceBDD newSerie = cursorToComment(cursor);
         cursor.close();
         return newSerie;
+    }
+
+    // supprimer un element
+    public void deleteCommentById(long seance) {
+
+        System.out.println("Comment deleted with id: " + seance);
+        database.delete(MySQLiteSeance.TABLE_SEANCE, MySQLiteSeance.COLUMN_ID
+                + " = " + seance, null);
     }
 
     // supprimer un element
@@ -92,7 +104,7 @@ public class SeanceDataSource {
         SeanceBDD seance = new SeanceBDD();
         seance.setId(cursor.getLong(0));
         seance.setSeance(cursor.getString(1));
-
+        seance.setDateSeance(cursor.getString(2));
         return seance;
     }
 

@@ -17,6 +17,8 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -67,7 +69,15 @@ public class Exe extends Activity implements SensorEventListener {
 
         String[] seance = new String[] { exo };
         int nextInt = new Random().nextInt(1);
-        SeanceBDD seanceDetail = dataSourceSeance.createComment(seance[nextInt]);
+
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => " + c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm ");
+        String formattedDate = df.format(c.getTime());
+
+
+        SeanceBDD seanceDetail = dataSourceSeance.createComment(seance[nextInt],formattedDate);
         setSeance(seanceDetail);
 
 
@@ -123,6 +133,8 @@ public class Exe extends Activity implements SensorEventListener {
 
             @Override
             public void onClick(View v) {
+
+                dataSourceSeance.deleteCommentById(getSeance().getId());
                 Intent intent = new Intent(Exe.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -182,18 +194,18 @@ public class Exe extends Activity implements SensorEventListener {
             public void onClick(View v) {
 
 
-
                 LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toastsave,
-                        (ViewGroup) findViewById(R.id.toast_layout_root));
+                View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
 
                 TextView text = (TextView) layout.findViewById(R.id.text);
-                text.setText("Votre exercice est bien sauvegardé");
+                text.setText("Votre séance a bien été sauvegardée");
 
                 Toast toast = new Toast(getApplicationContext());
                 toast.setView(layout);
                 toast.setDuration(Toast.LENGTH_SHORT);
                 toast.show();
+                Intent intent = new Intent(Exe.this, MainActivity.class);
+                startActivity(intent);
 
             }
         });

@@ -14,15 +14,17 @@ public class MySQLiteSeance extends SQLiteOpenHelper {
     public static final String TABLE_SEANCE = "seance";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_SEANCE = "seance";
+    public static final String COLUMN_DATE_SEANCE = "dateseance";
 
     private static final String DATABASE_NAME = "seance.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Commande sql pour la création de la base de données
     private static final String DATABASE_CREATE = "create table "
             + TABLE_SEANCE + "(" + COLUMN_ID
             + " integer primary key autoincrement, "
-            + COLUMN_SEANCE + " text not null );";
+            + COLUMN_SEANCE + " text not null,"
+            + COLUMN_DATE_SEANCE + " Date not null );";
 
     public MySQLiteSeance(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
