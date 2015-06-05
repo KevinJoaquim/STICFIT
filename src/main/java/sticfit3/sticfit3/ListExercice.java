@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 
 public class ListExercice extends AppCompatActivity {
 
@@ -31,19 +33,51 @@ public class ListExercice extends AppCompatActivity {
     }
 
     public void choiceExe(View view) {
-        Intent intent = new Intent(this, Exe.class);
-        String exo;
-        switch (view.getId()) {
-            case R.id.pompe:
-                exo = getString(R.string.button_pompe);
-                intent.putExtra("Exercice", exo);
-                break;
-            case R.id.abdo:
-                exo = getString(R.string.button_abdo);
-                intent.putExtra("Exercice", exo);
-                break;
-        }
 
-        startActivity(intent);
+        String exo;
+        CheckBox exPerso = (CheckBox) findViewById(R.id.exPerso);
+
+        if (exPerso.isChecked()) {
+
+            Intent intentPerso = new Intent(this, ExePerso.class);
+
+                switch (view.getId()) {
+
+                    case R.id.pompe:
+                        exo = getString(R.string.button_pompe);
+
+                        intentPerso.putExtra("Exercice", exo);
+
+                        startActivity(intentPerso);
+                        break;
+                    case R.id.abdo:
+                        exo = getString(R.string.button_abdo);
+                        intentPerso.putExtra("Exercice", exo);
+                        break;
+                }
+            }else {
+
+            Intent intent = new Intent(this, Exe.class);
+                switch (view.getId()) {
+
+                    case R.id.pompe:
+                        exo = getString(R.string.button_pompe);
+                        intent.putExtra("Exercice", exo);
+                        intent.putExtra("nbSeriePerso", "");
+                        intent.putExtra("nbRepPerso","");
+
+                        startActivity(intent);
+                        break;
+                    case R.id.abdo:
+                        exo = getString(R.string.button_abdo);
+                        intent.putExtra("Exercice", exo);
+                        intent.putExtra("nbSeriePerso","");
+                        intent.putExtra("nbRepPerso","");
+                        break;
+
+                }
+            }
+
+
     }
 }

@@ -60,9 +60,9 @@
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal" android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="57dp"
             android:gravity="center_vertical"
-            >
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,30 +70,12 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Série"
                 android:id="@+id/SerieTxt"
-                android:layout_marginLeft="40dip"
-                android:layout_marginRight="25dip"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Repetition"
-                android:id="@+id/RepetitionTxt"
-                android:layout_marginLeft="50dip"
+                android:layout_marginLeft="0dp"
                 android:layout_marginRight="10dip"
-                android:textStyle="bold"
                 android:textSize="25dp"
-                android:textIsSelectable="false" />
-        </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="horizontal" android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:weightSum="1">
-
+                android:textStyle="bold"
+                android:textIsSelectable="false"
+                android:layout_weight="0.14" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,63 +83,69 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/nbSerie"
                 android:hint="1"
-                android:layout_marginLeft="70dip"
-                android:layout_marginRight="70dip"
-                android:textSize="30dp"
-                android:text="1" />
+                android:textSize="25dp"
+                android:text="1"
+                android:layout_marginLeft="45dip" />
+
+        </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal" android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
 
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Repetition"
+                    android:id="@+id/RepetitionTxt"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="10dip"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:textIsSelectable="false"
+                    android:layout_weight="0.08" />
+
+                <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/nbRepet"
                 android:hint="0"
-                android:layout_marginLeft="60dip"
-                android:layout_marginRight="60dip"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:layout_weight="0.14" />
             </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:weightSum="1">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical" android:layout_width="142dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dip"
-            android:layout_marginRight="25dip"
-            >
-    <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="  Calorie"
-                android:id="@+id/calorieTxt"
-                android:textStyle="normal|bold"
-                android:textSize="25dp"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="25dip"
-                  />
-
-
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Calorie"
+                    android:id="@+id/calorieTxt"
+                    android:textStyle="normal|bold"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp" />
 
         <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:hint="0"
-            android:id="@+id/kl"
-            android:textStyle="normal"
-            android:textIsSelectable="true"
-            android:textSize="25dp"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            />
-        </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="0"
+        android:id="@+id/kl"
+        android:textStyle="normal"
+        android:textIsSelectable="true"
+        android:textSize="25dp"
+
+            android:layout_marginLeft="60dip" />
 
     </LinearLayout>
 
@@ -181,27 +169,24 @@
                 android:layout_height="wrap_content"
                 android:text="Reset All"
                 android:id="@+id/ResetAll"
-                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"/>
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save"
-                android:id="@+id/SaveAll"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="10dip"
-                android:layout_weight="0.57" />
+
 
 
         </LinearLayout>
 
-        <Button
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Annuler / Retour au menu"
+        android:layout_height="wrap_content"
+        android:text="Sauvegarder et quitter"
+        android:id="@+id/SaveAll" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quitter"
         android:id="@+id/Exit"/>
 </LinearLayout>

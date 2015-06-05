@@ -84,6 +84,16 @@
 
         </activity>
 
+        <activity
+            android:name=".ExePerso"
+            android:label="Exercice personnalisé"
+            android:parentActivityName=".ListExercice" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sticfit3.sticfit3.ListExercice" />
+
+        </activity>
+
 
     </application>
 
