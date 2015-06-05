@@ -27,7 +27,7 @@ public class Exe extends Activity implements SensorEventListener {
 
     // initialise la bdd
     private PompeDataSource datasource;
-
+    private SeanceDataSource dataSourceSeance;
 
 
     // proximity
@@ -46,26 +46,36 @@ public class Exe extends Activity implements SensorEventListener {
     private int i = 1;
     private double calfinal = 0;
 
+    SeanceBDD laSeance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exe);
 
+        //Connect to BDD
+        dataSourceSeance = new SeanceDataSource(this);
+        dataSourceSeance.open();
+
+        datasource = new PompeDataSource(this);
+        datasource.open();
+
         Intent intent = getIntent();
         String exo = intent.getStringExtra("Exercice");
         TextView title = (TextView) findViewById(R.id.Chronometre);
         title.setText(exo);
 
-        //Connect to BDD
-        datasource = new PompeDataSource(this);
-        datasource.open();
+        String[] seance = new String[] { exo };
+        int nextInt = new Random().nextInt(1);
+        SeanceBDD seanceDetail = dataSourceSeance.createComment(seance[nextInt]);
+        setSeance(seanceDetail);
+
 
         //active le sensor du téléphone
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // Instantiate the light and its max range
         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        maxRange = proximity.getMaximumRange();
+        maxRange = 8;//proximity.getMaximumRange();
 
 
         //Chronomètre
@@ -125,7 +135,9 @@ public class Exe extends Activity implements SensorEventListener {
             @Override
             public void onClick(View v) {
 
+                save();
                 SerieAdd();
+
             }
         });
 
@@ -169,7 +181,7 @@ public class Exe extends Activity implements SensorEventListener {
             @Override
             public void onClick(View v) {
 
-                save();
+
 
                 LayoutInflater inflater = getLayoutInflater();
                 View layout = inflater.inflate(R.layout.toastsave,
@@ -188,18 +200,44 @@ public class Exe extends Activity implements SensorEventListener {
 
     }
 
+
+
+    public void setSeance(SeanceBDD seance){
+        this.laSeance=seance;
+    }
+    public SeanceBDD getSeance() {
+        return laSeance;
+    }
+
     //Fonction sauvegarder tout (que serie pour le moment)
     public void save() {
         @SuppressWarnings("unchecked")
-        PompeBDD pompe = null;
 
         TextView t1 = (TextView) findViewById(R.id.nbSerie);
         String nbSerie = t1.getText().toString();
-
         String[] serie = new String[] { nbSerie };
+
+        TextView t2 = (TextView) findViewById(R.id.nbRepet);
+        String nbRep = t2.getText().toString();
+        if(nbRep.isEmpty()){
+            nbRep="0";
+        }
+        String[] rep = new String[] { nbRep };
+
+        TextView t3 = (TextView) findViewById(R.id.kl);
+        String nbKal = t3.getText().toString();
+        if(nbKal.isEmpty()){
+            nbKal="0";
+        }
+        String[] kal = new String[] { nbKal };
+
+        long idSeance = laSeance.getId();
+        String[] seance = new String[] { Long.toString(idSeance) };
+        Log.i("tag", "idSeanceSave:" +laSeance.getId());
         int nextInt = new Random().nextInt(1);
 
-        pompe = datasource.createComment(serie[nextInt]);
+        datasource.createComment(serie[nextInt],rep[nextInt],kal[nextInt],seance[nextInt]);
+
     }
 
 

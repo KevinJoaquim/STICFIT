@@ -11,12 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="208dp"
         android:layout_weight="0.70" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
-        android:id="@+id/delete"
+        android:text="Afficher"
+        android:id="@+id/afficher"
         android:layout_weight="0.27" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:id="@+id/delete"
+            android:layout_weight="0.27"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
 </LinearLayout>

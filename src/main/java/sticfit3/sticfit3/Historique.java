@@ -1,6 +1,7 @@
 package sticfit3.sticfit3;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -23,22 +24,22 @@ import java.util.List;
  */
 public class Historique extends AppCompatActivity {
 
-    private PompeDataSource datasource;
-    PompeBDD laData = null;
-    SimpleCursorAdapter mAdapter;
+    private SeanceDataSource dataSourceSeance;
+    SeanceBDD laData = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.historique);
 
-        datasource = new PompeDataSource(this);
-        datasource.open();
+        dataSourceSeance = new SeanceDataSource(this);
+        dataSourceSeance.open();
 
 
         // utilisez SimpleCursorAdapter pour afficher les
         // éléments dans une ListView
-        final ArrayAdapter<PompeBDD> listAdapter = new ArrayAdapter<PompeBDD>(this, android.R.layout.simple_list_item_checked, datasource.getAllComments());
+        final ArrayAdapter<SeanceBDD> listAdapter = new ArrayAdapter<SeanceBDD>(this, android.R.layout.simple_list_item_checked, dataSourceSeance.getAllComments());
 
         final ListView histoList = (ListView) this.findViewById(R.id.listHisto);
 
@@ -50,16 +51,16 @@ public class Historique extends AppCompatActivity {
         histoList.setAdapter(listAdapter);
 
         histoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            private PompeDataSource datasource;
-            PompeBDD data = null;
-            ArrayAdapter<PompeBDD> listAdapter;
+            private SeanceDataSource dataSourceSeance;
+            SeanceBDD data = null;
+            ArrayAdapter<SeanceBDD> listAdapter;
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 CheckedTextView checkedTextView = (CheckedTextView) view;
                 checkedTextView.toggle();
 
-                listAdapter = (ArrayAdapter<PompeBDD>) adapterView.getAdapter();
+                listAdapter = (ArrayAdapter<SeanceBDD>) adapterView.getAdapter();
                 data = listAdapter.getItem(i);
 
 
@@ -68,6 +69,7 @@ public class Historique extends AppCompatActivity {
                 }else{
                     setData(null);
                 }
+
                 if(histoList.getCheckedItemIds().length > 0  ){
 
                 }
@@ -86,7 +88,7 @@ public class Historique extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                PompeBDD data = null;
+                SeanceBDD data = null;
 
 
                 if (getLaData() != null) {
@@ -95,7 +97,7 @@ public class Historique extends AppCompatActivity {
                     // for (int i = 0; i < getListAdapter().getCount(); i++)
                     //{
                     data = getLaData();
-                    datasource.deleteComment(data);
+                    dataSourceSeance.deleteComment(data);
                     listAdapter.remove(data);
 
                     setData(null);
@@ -110,25 +112,53 @@ public class Historique extends AppCompatActivity {
             }
 
         });
+
+        final Button Afficher = (Button) findViewById(R.id.afficher);
+        Afficher.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                SeanceBDD data = null;
+
+
+                if (getLaData() != null) {
+
+                    data = getLaData();
+                    String idSeance = Long.toString(data.getId());
+                    setData(null);
+                    histoList.clearChoices();
+                    Log.i("test", "idSeance :" + data.getId());
+                    Intent intent = new Intent(Historique.this, DetailHisto.class);
+                    intent.putExtra("idSeance",idSeance);
+                    startActivity(intent);
+
+                }
+                listAdapter.notifyDataSetChanged();
+
+
+            }
+
+        });
     }
 
-    public void setData(PompeBDD data) {
+    public void setData(SeanceBDD data) {
         this.laData = data;
     }
 
-    public PompeBDD getLaData() {
+    public SeanceBDD getLaData() {
         return laData;
     }
 
     @Override
     protected void onResume() {
-        datasource.open();
+        dataSourceSeance.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        datasource.close();
+        dataSourceSeance.close();
         super.onPause();
     }
 }

@@ -9,7 +9,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:text="Exercice"
         android:id="@+id/Exercice"
 
@@ -22,7 +22,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:text="Historique"
         android:id="@+id/Historique"
         android:layout_alignParentRight="true"
@@ -33,7 +33,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:text="Paramètres"
         android:id="@+id/Parametre"
         android:layout_alignParentBottom="true"

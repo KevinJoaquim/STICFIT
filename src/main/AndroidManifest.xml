@@ -74,6 +74,15 @@
 
         </activity>
 
+        <activity
+            android:name=".DetailHisto"
+            android:label="Détail séance"
+            android:parentActivityName=".Historique" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sticfit3.sticfit3.Historique" />
+
+        </activity>
 
 
     </application>
