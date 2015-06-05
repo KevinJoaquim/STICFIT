@@ -62,10 +62,18 @@ public class Exe extends Activity implements SensorEventListener {
         datasource = new PompeDataSource(this);
         datasource.open();
 
+        //On récupère les variables passées dans l'intent
         Intent intent = getIntent();
         String exo = intent.getStringExtra("Exercice");
         TextView title = (TextView) findViewById(R.id.Chronometre);
         title.setText(exo);
+
+        String nbSeriePerso = intent.getStringExtra("nbSeriePerso");
+        String nbRepPerso = intent.getStringExtra("nbRepPerso");
+
+        Log.i("test","Exercice :" +exo);
+        Log.i("test","nbSerie :" +nbSeriePerso);
+        Log.i("test","nbRep :" +nbRepPerso);
 
         String[] seance = new String[] { exo };
         int nextInt = new Random().nextInt(1);
@@ -86,6 +94,7 @@ public class Exe extends Activity implements SensorEventListener {
         // Instantiate the light and its max range
         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         maxRange = 8;//proximity.getMaximumRange();
+
 
 
         //Chronomètre
@@ -127,6 +136,7 @@ public class Exe extends Activity implements SensorEventListener {
             }
         });
 
+
         // boutton exit quitter la page sans sauvegarder
         final Button ExitButton = (Button) findViewById(R.id.Exit);
         ExitButton.setOnClickListener(new View.OnClickListener() {
@@ -140,75 +150,83 @@ public class Exe extends Activity implements SensorEventListener {
             }
         });
 
-        //boutton ajouter serie +1
-        final Button SerieAdd = (Button) findViewById(R.id.SerieAdd);
-        SerieAdd.setOnClickListener(new View.OnClickListener() {
+            //boutton ajouter serie +1
+            final Button SerieAdd = (Button) findViewById(R.id.SerieAdd);
 
-            @Override
-            public void onClick(View v) {
-
-                save();
-                SerieAdd();
-
+            if(nbRepPerso.isEmpty() || nbSeriePerso.isEmpty()) {
+                SerieAdd.setVisibility(View.VISIBLE);
+            }else{
+                SerieAdd.setVisibility(View.GONE);
             }
-        });
+            SerieAdd.setOnClickListener(new View.OnClickListener() {
 
-        // boutton restAll remettre tout a 0
-        Button ResetAll = (Button)findViewById(R.id.ResetAll);
-        ResetAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // serie = 0
-                TextView t1 = (TextView) findViewById(R.id.nbSerie);
-                i=0;
-                String j = Integer.toString(i);
-                t1.setText(j);
+                @Override
+                public void onClick(View v) {
 
-                //chronomètre = 0
-                mChronometer.setBase(SystemClock.elapsedRealtime());
-                timeWhenStopped = 0;
-                onPause();
-                mChronometer.stop();
+                    save();
+                    SerieAdd();
 
-                // repetition = 0
-                h = 0;
-                TextView t2 = (TextView) findViewById(R.id.nbRepet);
-                String k = Integer.toString(h);
-                t2.setText(k);
+                }
+            });
 
+            // boutton restAll remettre tout a 0
+            Button ResetAll = (Button) findViewById(R.id.ResetAll);
+            ResetAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // serie = 0
+                    TextView t1 = (TextView) findViewById(R.id.nbSerie);
+                    i = 1;
+                    String j = Integer.toString(i);
+                    t1.setText(j);
 
-                //calorie =0
-                int u = 0;
-                TextView t3 = (TextView) findViewById(R.id.kl);
-                String calnull = Double.toString(u);
-                t3.setText(calnull);
-                onResume();
-            }
-        });
+                    //chronomètre = 0
+                    mChronometer.setBase(SystemClock.elapsedRealtime());
+                    timeWhenStopped = 0;
+                    onPause();
+                    mChronometer.stop();
 
-        //boutton sauvegarder tout (que Serie pour le moment)
-        final Button SaveAll = (Button) findViewById(R.id.SaveAll);
-        SaveAll.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+                    // repetition = 0
+                    h = 0;
+                    TextView t2 = (TextView) findViewById(R.id.nbRepet);
+                    String k = Integer.toString(h);
+                    t2.setText(k);
 
 
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
+                    //calorie =0
+                    int u = 0;
+                    TextView t3 = (TextView) findViewById(R.id.kl);
+                    String calnull = Double.toString(u);
+                    t3.setText(calnull);
+                    onResume();
+                }
+            });
 
-                TextView text = (TextView) layout.findViewById(R.id.text);
-                text.setText("Votre séance a bien été sauvegardée");
+            //boutton sauvegarder tout (que Serie pour le moment)
+            final Button SaveAll = (Button) findViewById(R.id.SaveAll);
+            SaveAll.setOnClickListener(new View.OnClickListener() {
 
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.show();
-                Intent intent = new Intent(Exe.this, MainActivity.class);
-                startActivity(intent);
+                @Override
+                public void onClick(View v) {
 
-            }
-        });
+                    save();
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
+
+                    TextView text = (TextView) layout.findViewById(R.id.text);
+                    text.setText("Votre séance a bien été sauvegardée");
+
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setView(layout);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent intent = new Intent(Exe.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+
+
 
     }
 
