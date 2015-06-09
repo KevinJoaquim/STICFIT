@@ -5,7 +5,7 @@
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="73dp">
 
     <TextView
@@ -15,16 +15,18 @@
         android:id="@+id/textView"
         android:textStyle="bold"
         android:textSize="20dp" />
-    <EditText
-        android:layout_width="217dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/mpoids"
-        android:hint="Insérer votre poids"
-        android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/mpoids"
+            android:layout_weight="1" />
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="73dp"
         >
 
@@ -35,16 +37,18 @@
             android:id="@+id/textView2"
             android:textSize="20dp"
             android:textStyle="bold" />
+
         <EditText
-            android:layout_width="222dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
             android:id="@+id/mtaille"
-            android:hint="Insérer votre taille"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="1" />
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="73dp"
         >
 
@@ -55,12 +59,14 @@
             android:id="@+id/textView3"
             android:textSize="20dp"
             android:textStyle="bold" />
+
         <EditText
-            android:layout_width="222dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
             android:id="@+id/mage"
-            android:hint="Insérer votre taille"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -76,12 +82,26 @@
             android:id="@+id/textView4"
             android:textSize="20dp"
             android:textStyle="bold" />
-        <EditText
-            android:layout_width="222dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/msexe"
-            android:hint="Insérer votre taille"
-            android:layout_gravity="center_horizontal" />
+
+        <RadioGroup
+            android:id="@+id/radioSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Homme"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Femme" />
+
+        </RadioGroup>
 
     </LinearLayout>
 
@@ -94,8 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valider"
-        android:id="@+id/valider"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/valider" />
 
-</LinearLayout>
+    </LinearLayout>
 </LinearLayout>

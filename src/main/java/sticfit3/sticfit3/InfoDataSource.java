@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ public class InfoDataSource {
             MySQLiteInfo.COLUMN_POIDS,MySQLiteInfo.COLUMN_TAILLE,MySQLiteInfo.COLUMN_SEXE,
             MySQLiteInfo.COLUMN_AGE };
 
+
+
     public InfoDataSource(Context context) {
         dbHelper = new MySQLiteInfo(context);
     }
@@ -31,15 +34,17 @@ public class InfoDataSource {
         dbHelper.close();
     }
 
-    //crée un nouvel element (il y a que serie pour le moment)
+    //crée un nouvel element InfoBDD
     public InfoBDD createComment(String poids, String taille, String sexe, String age) {
 
-        //Récupère dans un Cursor les valeurs correspondant à un livre contenu dans la BDD (ici on sélectionne le livre grâce à son titre)
+        //Récupère dans un Cursor les valeurs de toutes les colonnes de table Info
         Cursor cursor = database.query(MySQLiteInfo.TABLE_INFO,
                 allColumns, null, null,
                 null, null, null);
 
 
+        //Si le cursor est vide alors on crée un nouvel élément
+        //Sinon on Modifie le contenu à l'id 1
         if(cursor.getCount()== 0){
 
             ContentValues values = new ContentValues();
@@ -71,13 +76,32 @@ public class InfoDataSource {
                     allColumns, MySQLiteInfo.COLUMN_ID + " = " + insertId, null,
                     null, null, null);
             cursorUpdate.moveToFirst();
-            InfoBDD newSerie = cursorToComment(cursorUpdate);
+            InfoBDD newInfo = cursorToComment(cursorUpdate);
             cursorUpdate.close();
             cursor.close();
-            return newSerie;
+            return newInfo;
         }
 
     }
+    //Renvoi le contenu d'un object de la bdd avec l'id
+    public InfoBDD getCommentById(long idEx){
+        InfoBDD comments = new InfoBDD();
+        Log.i("all","=  " + allColumns);
+        Cursor cursorPoids = database.query(MySQLiteInfo.TABLE_INFO,
+                allColumns, MySQLiteInfo.COLUMN_ID + " = " + idEx, null,
+                null, null, null);
+        cursorPoids.moveToFirst();
+        System.out.println("Comment get with id: " + idEx);
+
+        InfoBDD comment = cursorToComment(cursorPoids);
+
+        cursorPoids.close();
+        return comment;
+
+
+    }
+
+
     // supprimer un element
     public void deleteComment(InfoBDD info) {
         long id = info.getId();
@@ -85,7 +109,6 @@ public class InfoDataSource {
         database.delete(MySQLiteInfo.TABLE_INFO, MySQLiteInfo.COLUMN_ID
                 + " = " + id, null);
     }
-
     // recupere le contenu de la bdd
     public List<InfoBDD> getAllComments() {
         List<InfoBDD> comments = new ArrayList<InfoBDD>();
@@ -114,6 +137,8 @@ public class InfoDataSource {
         pompe.setAge(cursor.getString(4));
         return pompe;
     }
+
+
 
 }
 

@@ -8,15 +8,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Infos et aide"
-        android:id="@+id/info"
+        android:text="informations personnel"
+        android:id="@+id/infoperso"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.68" />
+        android:layout_weight="0.74" />
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="176dp"
-        android:text="informations personnel"
-        android:id="@+id/infoperso"
-        android:layout_weight="0.18" />
+        android:layout_height="wrap_content"
+        android:text="Infos et aide"
+        android:id="@+id/info"
+        android:layout_weight="0.34" />
 </LinearLayout>

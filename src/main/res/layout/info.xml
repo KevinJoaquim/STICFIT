@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="N&apos;hesitez pas à nous contacter pour plus d&apos;information"
+        android:text="N&apos;hésitez pas à nous contacter pour plus d&apos;informations"
         android:id="@+id/textView2"
         android:layout_weight="0.30"
         android:gravity="center_vertical|center_horizontal"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Envoyé nous un e-mails"
+        android:text="Envoyez-nous un email"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.30"
@@ -30,8 +30,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subject:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Objet:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 
     <EditText
         android:id="@+id/subject"
@@ -60,7 +61,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sent"
+        android:text="Envoyer"
         android:id="@+id/sent" />
 
 </LinearLayout>

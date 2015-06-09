@@ -31,55 +31,44 @@ public class InfoPerso extends AppCompatActivity {
         datasource = new InfoDataSource(this);
         datasource.open();
 
+        //Liste de ma BDD
         final ArrayAdapter<InfoBDD> listAdapter = new ArrayAdapter<InfoBDD>(this, android.R.layout.simple_list_item_1, datasource.getAllComments());
 
 
         final ListView infoListe = (ListView) this.findViewById(R.id.list_info);
         infoListe.setAdapter(listAdapter);
 
-        final Button ajout = (Button) findViewById(R.id.ajout);
-        ajout.setVisibility(View.GONE);
-        TextView text = (TextView) findViewById (R.id.textView5);
-        text.setVisibility(View.GONE);
-        final Button modif = (Button) findViewById(R.id.modifier);
-        modif.setVisibility(View.VISIBLE);
 
-        if(listAdapter.getCount() == 0){
+        //Bouton modifier qui me renvoi à la classe ModifPerso
+        final Button modifier = (Button) findViewById(R.id.modifier);
+        modifier.setOnClickListener(new View.OnClickListener() {
 
-            ajout.setVisibility(View.VISIBLE);
-            text.setVisibility(View.VISIBLE);
-            modif.setVisibility(View.GONE);
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InfoPerso.this, ModifPerso.class);
+                startActivity(intent);
+            }
+        });
 
+        //Si ma liste est vide je change de layout
+        //Cette partie ne se réalise seulement à la première connection
+        if(listAdapter.getCount() == 0) {
+
+            setContentView(R.layout.infopersonodata);
+
+            final Button ajouter = (Button) findViewById(R.id.ajouter);
+            ajouter.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(InfoPerso.this, ModifPerso.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
 
         }
-
-        ajout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(InfoPerso.this, ModifPerso.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-        modif.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(InfoPerso.this, ModifPerso.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-
-    }
     @Override
     protected void onPause()
     {

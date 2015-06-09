@@ -10,15 +10,6 @@
         android:layout_height="208dp"
         android:layout_weight="0.01" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="95dp"
-        android:text="Vous n&apos;avez pas d&apos;informations personnel !! "
-        android:id="@+id/textView5"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"
-        android:layout_weight="0.01" />
 
     <Button
         android:layout_width="match_parent"
@@ -26,12 +17,6 @@
         android:text="Modifier"
         android:id="@+id/modifier" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ajouter des informations"
-        android:id="@+id/ajout" />
 
 
 </LinearLayout>

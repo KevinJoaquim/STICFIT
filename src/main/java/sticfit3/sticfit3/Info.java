@@ -22,15 +22,20 @@ public class Info extends Parametre {
             emailSubject = (EditText) findViewById(R.id.subject);
             emailBody = (EditText) findViewById(R.id.emailBody);
 
+            //Button sent envoi un mail
+            // toEmail ecrit par défault , contrairement au subject et au message
             final Button sent = (Button) findViewById(R.id.sent);
             sent.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
+
+
                     String toEmail = "kevin.marques.joaquim@gmail.com";
                     String subject = emailSubject.getText().toString();
                     String message = emailBody.getText().toString();
 
+                    //Intente Action envoi
                     Intent email = new Intent(Intent.ACTION_SEND);
                     email.putExtra(Intent.EXTRA_EMAIL, new String[] { toEmail });
                     email.putExtra(Intent.EXTRA_SUBJECT, subject);
