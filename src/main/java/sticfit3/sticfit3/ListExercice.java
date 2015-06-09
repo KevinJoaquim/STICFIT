@@ -37,6 +37,7 @@ public class ListExercice extends AppCompatActivity {
         String exo;
         CheckBox exPerso = (CheckBox) findViewById(R.id.exPerso);
 
+        //si la case est coché on redirige vers exePerso
         if (exPerso.isChecked()) {
 
             Intent intentPerso = new Intent(this, ExePerso.class);
@@ -48,34 +49,35 @@ public class ListExercice extends AppCompatActivity {
 
                         intentPerso.putExtra("Exercice", exo);
 
-                        startActivity(intentPerso);
+
                         break;
                     case R.id.abdo:
                         exo = getString(R.string.button_abdo);
                         intentPerso.putExtra("Exercice", exo);
                         break;
                 }
-            }else {
+            //On start l'acctivité
+            startActivity(intentPerso);
 
+            }else {
+            //Autrement on redirige vers exe directement et on passe les parametre Perso vide pour eviter erreur
             Intent intent = new Intent(this, Exe.class);
+            intent.putExtra("nbSeriePerso", "");
+            intent.putExtra("nbRepPerso","");
                 switch (view.getId()) {
 
                     case R.id.pompe:
                         exo = getString(R.string.button_pompe);
                         intent.putExtra("Exercice", exo);
-                        intent.putExtra("nbSeriePerso", "");
-                        intent.putExtra("nbRepPerso","");
-
-                        startActivity(intent);
                         break;
                     case R.id.abdo:
                         exo = getString(R.string.button_abdo);
                         intent.putExtra("Exercice", exo);
-                        intent.putExtra("nbSeriePerso","");
-                        intent.putExtra("nbRepPerso","");
                         break;
 
                 }
+            //On start l'activité
+            startActivity(intent);
             }
 
 

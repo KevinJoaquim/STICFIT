@@ -25,6 +25,7 @@ import java.util.List;
 public class Historique extends AppCompatActivity {
 
     private SeanceDataSource dataSourceSeance;
+    private PompeDataSource datasource;
     SeanceBDD laData = null;
 
 
@@ -35,6 +36,8 @@ public class Historique extends AppCompatActivity {
 
         dataSourceSeance = new SeanceDataSource(this);
         dataSourceSeance.open();
+        datasource = new PompeDataSource(this);
+        datasource.open();
 
 
         // utilisez SimpleCursorAdapter pour afficher les
@@ -93,15 +96,14 @@ public class Historique extends AppCompatActivity {
 
                 if (getLaData() != null) {
 
-                    long position = 0;
-                    // for (int i = 0; i < getListAdapter().getCount(); i++)
-                    //{
                     data = getLaData();
+                    datasource.deleteComment(Long.toString(data.getId()));
                     dataSourceSeance.deleteComment(data);
+
                     listAdapter.remove(data);
 
                     setData(null);
-                    //}
+
                     histoList.clearChoices();
 
 
@@ -153,12 +155,14 @@ public class Historique extends AppCompatActivity {
     @Override
     protected void onResume() {
         dataSourceSeance.open();
+        datasource.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
         dataSourceSeance.close();
+        datasource.close();
         super.onPause();
     }
 }

@@ -54,11 +54,10 @@ public class PompeDataSource {
     }
 
     // supprimer un element
-    public void deleteComment(PompeBDD pompe) {
-        long id = pompe.getId();
-        System.out.println("Comment deleted with id: " + id);
-        database.delete(MySQLiteHelper.TABLE_POMPES, MySQLiteHelper.COLUMN_ID
-                + " = " + id, null);
+    public void deleteComment(String idSeance) {
+        System.out.println("Detail seance comment deleted with id: " + idSeance);
+        database.delete(MySQLiteHelper.TABLE_POMPES, MySQLiteHelper.COLUMN_ID_SEANCE
+                + " = " + idSeance, null);
     }
 
     public List<PompeBDD> getCommentById(String idEx) {

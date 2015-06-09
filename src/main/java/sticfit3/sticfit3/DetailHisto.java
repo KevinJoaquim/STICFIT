@@ -40,4 +40,10 @@ public class DetailHisto extends AppCompatActivity{
 
     }
 
+    protected void onPause()
+    {
+        datasource.close();
+        super.onPause();
+    }
+
 }

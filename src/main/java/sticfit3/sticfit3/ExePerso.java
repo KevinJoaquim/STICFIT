@@ -60,18 +60,21 @@ public class ExePerso extends AppCompatActivity{
         Log.i("test","nbSerie :" +nbSerie);
         Log.i("test","nbRep :" +nbRep);
 
+        //On vérifie que les champs soient bien remplis avant de rediriger
         if(nbSerie.isEmpty() || nbRep.isEmpty()) {
+            //On avertis qu'un des champs est vide
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
 
             TextView text = (TextView) layout.findViewById(R.id.text);
-            text.setText("Veuillez remplir les champs");
+            text.setText("Veuillez remplir tous les champs");
 
             Toast toast = new Toast(getApplicationContext());
             toast.setView(layout);
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.show();
         }else{
+            //Sinon on redirige
             startActivity(intent);
         }
 
