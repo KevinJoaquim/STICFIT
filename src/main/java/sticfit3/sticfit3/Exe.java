@@ -566,14 +566,15 @@ public class Exe extends Activity implements SensorEventListener {
                                         //On rend les boutons accessibles dans cette fonction
                                         Button Stop = (Button) findViewById(R.id.Pause);
                                         Button Effacer = (Button) findViewById(R.id.Reset);
-
+                                        Intent intent = getIntent();
                                         public void onChronometerTick(Chronometer chronometer){
 
                                             //On recupère en temps réel
                                             long myElapsedMillis=SystemClock.elapsedRealtime() - mChronometer.getBase();
+                                            final int minRepos =  Integer.valueOf(intent.getStringExtra("minRepos"));
+                                            final int secRepos = Integer.valueOf(intent.getStringExtra("secRepos"));
 
-                                            //Quand on atteint 5 seconde de repos
-                                            if(myElapsedMillis>=5000){
+                                            if(myElapsedMillis>=tempsRepos(minRepos,secRepos)){
                                                 //Le reset remet a 0seconde
                                                 Effacer.performClick();
                                                 //Le pause garde le chrono a 0seconde pour eviter la boucle

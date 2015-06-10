@@ -147,7 +147,7 @@ public class ExePerso extends AppCompatActivity{
 
         //On vérifie que les champs soient bien remplis avant de rediriger
         if(nbSerie.isEmpty() || nbRep.isEmpty() || minRepos.isEmpty() || secRepos.isEmpty() ) {
-            
+
             //On avertis qu'un des champs est vide
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
