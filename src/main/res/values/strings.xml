@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">STICFIT</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="button_pompe">Pompe</string>
-    <string name="button_abdo">Abdo</string>
+    <string name="button_biceps">Biceps avec Altères</string>
 
 </resources>

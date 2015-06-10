@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 public class ListExercice extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class ListExercice extends AppCompatActivity {
 
     public void choiceExe(View view) {
 
-        String exo;
+        TextView exo;
         CheckBox exPerso = (CheckBox) findViewById(R.id.exPerso);
 
         //si la case est coché on redirige vers exePerso
@@ -43,17 +44,16 @@ public class ListExercice extends AppCompatActivity {
             Intent intentPerso = new Intent(this, ExePerso.class);
 
                 switch (view.getId()) {
-
                     case R.id.pompe:
-                        exo = getString(R.string.button_pompe);
+                        exo = (TextView) findViewById(R.id.pompe);
 
-                        intentPerso.putExtra("Exercice", exo);
+                        intentPerso.putExtra("Exercice", exo.getText());
 
 
                         break;
-                    case R.id.abdo:
-                        exo = getString(R.string.button_abdo);
-                        intentPerso.putExtra("Exercice", exo);
+                    case R.id.biceps:
+                        exo = (TextView) findViewById(R.id.biceps);
+                        intentPerso.putExtra("Exercice", exo.getText());
                         break;
                 }
             //On start l'acctivité
@@ -67,12 +67,12 @@ public class ListExercice extends AppCompatActivity {
                 switch (view.getId()) {
 
                     case R.id.pompe:
-                        exo = getString(R.string.button_pompe);
-                        intent.putExtra("Exercice", exo);
+                        exo = (TextView) findViewById(R.id.pompe);
+                        intent.putExtra("Exercice", exo.getText());
                         break;
-                    case R.id.abdo:
-                        exo = getString(R.string.button_abdo);
-                        intent.putExtra("Exercice", exo);
+                    case R.id.biceps:
+                        exo = (TextView) findViewById(R.id.biceps);
+                        intent.putExtra("Exercice", exo.getText());
                         break;
 
                 }

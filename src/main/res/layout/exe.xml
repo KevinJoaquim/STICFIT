@@ -1,200 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
-
+    >
 
 <TextView
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:id="@+id/Chronometre"
     android:gravity="center"
     android:layout_gravity="center_horizontal"
-    android:textSize="40dp"
-    android:textIsSelectable="true"/>
+    android:textSize="30dp"
+    android:textIsSelectable="true"
+    android:layout_weight="1"/>
 
 <Chronometer
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="40dp"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:layout_gravity="center_horizontal"
-    android:id="@+id/chronometer"/>
+    android:id="@+id/chronometer"
+    android:gravity="center_horizontal"
+    android:layout_weight="1"/>
 
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Re/start"
-        android:id="@+id/Start"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-         />
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="4dp"
+    android:layout_weight="1">
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Re/start"
+            android:id="@+id/Start"
+
+             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="Reset"
             android:id="@+id/Reset"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"/>
+
+           />
 
         <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pause"
-        android:id="@+id/Pause"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"/>
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Pause"
+            android:id="@+id/Pause"
+
+            />
 
     </LinearLayout>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal" android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:gravity="center_vertical"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Série"
-                android:id="@+id/SerieTxt"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="10dip"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:textIsSelectable="false"
-                android:layout_weight="0.14" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/nbSerie"
-                android:hint="1"
-                android:textSize="25dp"
-                android:text="1"
-                android:layout_marginLeft="45dip" />
-
-        </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="horizontal" android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="1">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="52dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Repetition"
-                    android:id="@+id/RepetitionTxt"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="10dip"
-                    android:textStyle="bold"
-                    android:textSize="25dp"
-                    android:textIsSelectable="false"
-                    android:layout_weight="0.08" />
-
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/nbRepet"
-                android:hint="0"
-                android:textSize="25dp"
-                android:layout_weight="0.14" />
-            </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Calorie"
+                    android:text="Séries"
+                    android:id="@+id/SerieTxt"
+                     />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Repetitions"
+                    android:id="@+id/RepetitionTxt"
+                     />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Calories"
                     android:id="@+id/calorieTxt"
-                    android:textStyle="normal|bold"
-                    android:textSize="25dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp" />
+                    />
+        </LinearLayout>
 
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:hint="0"
-        android:id="@+id/kl"
-        android:textStyle="normal"
-        android:textIsSelectable="true"
-        android:textSize="25dp"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_weight="1">
 
-            android:layout_marginLeft="60dip" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/nbSerie"
+                    android:hint="1"
+                    android:text="1"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/nbRepet"
+                    android:hint="0"
+
+                 />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:hint="0"
+                            android:id="@+id/kl"
+                    />
+        </LinearLayout>
 
     </LinearLayout>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal" android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="4dp"
+        android:layout_weight="1">
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Série+1"
                 android:id="@+id/SerieAdd"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"/>
+                />
 
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Reset All"
                 android:id="@+id/ResetAll"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"/>
+                />
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Rep +1"
                 android:id="@+id/Rep1"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"/>
+                />
 
-
-
-
-
-        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Sauvegarder et quitter"
         android:id="@+id/SaveAll" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Quitter"
         android:id="@+id/Exit"/>
 </LinearLayout>

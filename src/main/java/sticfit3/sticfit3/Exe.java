@@ -240,8 +240,8 @@ public class Exe extends Activity implements SensorEventListener {
             //Replacer le code de ce boutton dans le capteur de proximité (déja fait)
             //On cache ce bouton utiliser que pour le mode développement virtuel
            final Button Rep1 = (Button) findViewById(R.id.Rep1);
-        
-            Rep1.setVisibility(View.GONE);
+
+            Rep1.setVisibility(View.VISIBLE);
             Rep1.setOnClickListener(new View.OnClickListener() {
 
                 Intent intent = getIntent();
