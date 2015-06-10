@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -99,7 +100,7 @@ public class Exe extends Activity implements SensorEventListener {
         // Instantiate the light and its max range
         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         maxRange = 8;//proximity.getMaximumRange();
-
+        sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
 
         //Chronomètre
         SharedPreferenceManager.instance().persistTimeSpentOnLevel(0);
@@ -461,6 +462,7 @@ public class Exe extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         // update only when your are in the right case:
+
         Intent intent = getIntent();
         String exo = intent.getStringExtra("Exercice");
         final String nbSeriePerso = intent.getStringExtra("nbSeriePerso");
@@ -506,7 +508,7 @@ public class Exe extends Activity implements SensorEventListener {
                             toast.show();
 
                             //DESACTIVER LE CAPTEUR ICI ! Seance terminée
-                            //Rep1.setVisibility(View.GONE);
+                            sensorManager.unregisterListener(Exe.this, proximity);
 
 
                         }else {
@@ -531,7 +533,8 @@ public class Exe extends Activity implements SensorEventListener {
                             sensorManager.unregisterListener(Exe.this, proximity);
 
                             //On lance le chrono
-                            mChronometer.performClick();
+                            final Button Start = (Button) findViewById(R.id.Start);
+                            Start.performClick();
                             mChronometer.setOnChronometerTickListener(
                                     new Chronometer.OnChronometerTickListener(){
                                         //On rend les boutons accessibles dans cette fonction
@@ -542,7 +545,10 @@ public class Exe extends Activity implements SensorEventListener {
 
                                             //On recupère en temps réel
                                             long myElapsedMillis=SystemClock.elapsedRealtime() - mChronometer.getBase();
-
+                                            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+                                            // Instantiate the light and its max range
+                                            proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+                                            maxRange = 8;//proximity.getMaximumRange();
                                             //Quand on atteint 5 seconde de repos
                                             if(myElapsedMillis>=5000){
                                                 //Stop le chrono et reset
@@ -554,7 +560,7 @@ public class Exe extends Activity implements SensorEventListener {
                                                 player.start();
 
                                                 //REACTIVER LE CAPTEUR
-                                                sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+                                                sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
                                             }
                                         }
                                     });
