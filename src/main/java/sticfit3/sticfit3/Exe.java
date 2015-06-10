@@ -100,7 +100,7 @@ public class Exe extends Activity implements SensorEventListener {
         // Instantiate the light and its max range
         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         maxRange = 8;//proximity.getMaximumRange();
-        sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+
 
         //Chronomètre
         SharedPreferenceManager.instance().persistTimeSpentOnLevel(0);
@@ -295,6 +295,7 @@ public class Exe extends Activity implements SensorEventListener {
                             player = MediaPlayer.create(Exe.this, R.raw.airhorn);
                             player.start();
                             sensorManager.unregisterListener(Exe.this, proximity);
+                            Rep1.setVisibility(View.GONE);
                             Start.performClick();
                             mChronometer.setOnChronometerTickListener(
                                 new Chronometer.OnChronometerTickListener(){
@@ -305,11 +306,14 @@ public class Exe extends Activity implements SensorEventListener {
                                         long myElapsedMillis=SystemClock.elapsedRealtime() - mChronometer.getBase();
 
                                         if(myElapsedMillis>=5000){
-                                            Stop.performClick();
+                                            //Le reset remet a 0
                                             Effacer.performClick();
+                                            //Le pause garde le chrono a 0 pour eviter la boucle
+                                            Stop.performClick();
+
                                             player = MediaPlayer.create(Exe.this, R.raw.airhorn);
                                             player.start();
-                                            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+                                            Rep1.setVisibility(View.VISIBLE);
                                         }
                                     }
                                 });
@@ -531,6 +535,7 @@ public class Exe extends Activity implements SensorEventListener {
 
                             //Désactiver capteur !
                             sensorManager.unregisterListener(Exe.this, proximity);
+                            Log.i("test","Capteur Désactivé");
 
                             //On lance le chrono
                             final Button Start = (Button) findViewById(R.id.Start);
@@ -545,15 +550,13 @@ public class Exe extends Activity implements SensorEventListener {
 
                                             //On recupère en temps réel
                                             long myElapsedMillis=SystemClock.elapsedRealtime() - mChronometer.getBase();
-                                            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-                                            // Instantiate the light and its max range
-                                            proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-                                            maxRange = 8;//proximity.getMaximumRange();
+
                                             //Quand on atteint 5 seconde de repos
                                             if(myElapsedMillis>=5000){
-                                                //Stop le chrono et reset
-                                                Stop.performClick();
+                                                //Le reset remet a 0seconde
                                                 Effacer.performClick();
+                                                //Le pause garde le chrono a 0seconde pour eviter la boucle
+                                                Stop.performClick();
 
                                                 //Bip  sonore reprise de repetition
                                                 player = MediaPlayer.create(Exe.this, R.raw.airhorn);
@@ -561,6 +564,7 @@ public class Exe extends Activity implements SensorEventListener {
 
                                                 //REACTIVER LE CAPTEUR
                                                 sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+                                                Log.i("test","Capteur activé");
                                             }
                                         }
                                     });
