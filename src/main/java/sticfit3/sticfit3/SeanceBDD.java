@@ -45,7 +45,7 @@ public class SeanceBDD  {
     public String toString() {
 
 
-        return "Seance : " + seance + "\nDu : "+ dateSeance;
+        return "Séance : " + seance + "\nDu : "+ dateSeance;
     }
 }
 

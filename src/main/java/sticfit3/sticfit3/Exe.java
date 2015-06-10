@@ -77,6 +77,9 @@ public class Exe extends Activity implements SensorEventListener {
         final String nbSeriePerso = intent.getStringExtra("nbSeriePerso");
         final String nbRepPerso = intent.getStringExtra("nbRepPerso");
 
+
+
+
         Log.i("test", "Exercice :" + exo);
         Log.i("test", "nbSerie :" + nbSeriePerso);
         Log.i("test", "nbRep :" + nbRepPerso);
@@ -139,6 +142,13 @@ public class Exe extends Activity implements SensorEventListener {
             }
         });
 
+        //Si en mode personnalisée on cache les boutons  du chrono, temps de repos automatique
+
+        if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
+            Start.setVisibility(View.GONE);
+            Stop.setVisibility(View.GONE);
+            Effacer.setVisibility(View.GONE);
+        }
 
         // boutton exit quitter la page sans sauvegarder
         final Button ExitButton = (Button) findViewById(R.id.Exit);
@@ -146,7 +156,7 @@ public class Exe extends Activity implements SensorEventListener {
 
             @Override
             public void onClick(View v) {
-
+                datasource.open();
                 datasource.deleteComment(Long.toString(getSeance().getId()));
                 dataSourceSeance.deleteCommentById(getSeance().getId());
                 Intent intent = new Intent(Exe.this, MainActivity.class);
@@ -305,7 +315,10 @@ public class Exe extends Activity implements SensorEventListener {
                                     public void onChronometerTick(Chronometer chronometer){
                                         long myElapsedMillis=SystemClock.elapsedRealtime() - mChronometer.getBase();
 
-                                        if(myElapsedMillis>=5000){
+                                        final int minRepos =  Integer.valueOf(intent.getStringExtra("minRepos"));
+                                        final int secRepos = Integer.valueOf(intent.getStringExtra("secRepos"));
+
+                                        if(myElapsedMillis>=tempsRepos(minRepos,secRepos)){
                                             //Le reset remet a 0
                                             Effacer.performClick();
                                             //Le pause garde le chrono a 0 pour eviter la boucle
@@ -341,6 +354,14 @@ public class Exe extends Activity implements SensorEventListener {
         });
 
 
+    }
+
+    public long tempsRepos(int minutes, int secondes){
+        long tempsTotal;
+        minutes = minutes*60*1000;
+        secondes = secondes*1000;
+        tempsTotal=minutes+secondes;
+        return tempsTotal;
     }
 
 

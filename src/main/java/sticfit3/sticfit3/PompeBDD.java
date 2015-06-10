@@ -56,7 +56,7 @@ public class PompeBDD {
     @Override
     public String toString() {
 
-        return "Serie: " + serie + "\nRepetition : " +repetition + "\nCalorie :" +calorie ;
+        return "Séries: " + serie + "\nRépétitions : " +repetition + "\nCalories :" +calorie ;
     }
 }
 

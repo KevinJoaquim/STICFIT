@@ -1,69 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <LinearLayout  android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Entrez le nombre de série"
-        android:id="@+id/serieText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/nbSeriePerso"
-        android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout  android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entrez le nombre de repetition"
-            android:id="@+id/repText" />
+    >
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:layout_weight="1"
+            android:hint="Entrez le nombre de séries"
             android:ems="10"
-            android:id="@+id/nbRepPerso"
-            android:layout_weight="1" />
-    </LinearLayout>
+            android:id="@+id/nbSeriePerso" />
 
-    <LinearLayout  android:layout_width="match_parent"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="Entrez le nombre de répétitions"
+            android:ems="10"
+            android:id="@+id/nbRepPerso" />
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:text="Entrez le temps de repos"
-            android:id="@+id/timePersoTitle" />
-
-        <TimePicker
             android:layout_width="wrap_content"
-            android:layout_height="223dp"
-            android:id="@+id/timePicker_sec" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Entrez votre temps de repos"
+            android:id="@+id/textView5" />
 
-    </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:layout_weight="1">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:hint="Minutes"
+        android:id="@+id/minRepos"
+        android:layout_weight="1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:hint="Secondes"
+        android:id="@+id/secRepos"
+        android:layout_weight="1" />
+</LinearLayout>
+        </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Commencez la séance"
         android:id="@+id/btnPerso"
         android:onClick="sendPerso"/>
+
+
 
 </LinearLayout>

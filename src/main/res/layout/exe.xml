@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Repetitions"
+                    android:text="Répétitions"
                     android:id="@+id/RepetitionTxt"
                      />
 
