@@ -41,34 +41,41 @@ public class ModifPerso extends AppCompatActivity {
 
         datasource = new InfoDataSource(this);
         datasource.open();
-
-        //Recuperation de tout les éléments de id 1
-        data = datasource.getCommentById(1);
-
-        //Modification du texte de l'EditTexte par le contenu de la BDD
         EditText editpoids = (EditText) findViewById (R.id.mpoids);
-        editpoids.setText(data.getPoids());
-
         EditText edittaille = (EditText) findViewById (R.id.mtaille);
-        edittaille.setText(data.getTaille());
-
         EditText editage = (EditText) findViewById (R.id.mage);
-        editage.setText(data.getAge());
 
-        final RadioButton radio1 = (RadioButton)findViewById(R.id.radioMale);
-        final RadioButton radio2 = (RadioButton)findViewById(R.id.radioFemale);
+        final RadioButton radio1 = (RadioButton) findViewById(R.id.radioMale);
+        final RadioButton radio2 = (RadioButton) findViewById(R.id.radioFemale);
 
-        // le sexe est un Homme il checkera radio1 sinon radio2
-        if(data.getSexe() == "Homme"){
-            radio1.setChecked(true);
+
+
+        //On verifie que la BDD est vide
+        if(datasource.getAllComments().isEmpty()) {
+            // Partie si vide
+
 
         }else{
-            radio2.setChecked(true);
+
+            //Recuperation de tout les éléments de id 1
+            data = datasource.getCommentById(1);
+            //Modification du texte de l'EditTexte par le contenu de la BDD
+
+            editpoids.setText(data.getPoids());
+
+            edittaille.setText(data.getTaille());
+
+            editage.setText(data.getAge());
+
+
+            // le sexe est un Homme il checkera radio1 sinon radio2
+            if(datasource.getCommentById(1).getSexe() == "Homme"){
+                radio1.setChecked(true);
+
+            }else{
+                radio2.setChecked(true);
+            }
         }
-
-
-
-
 
         //Button saveAll permet de modifier le contenu dans la bdd
         final Button SaveAll = (Button) findViewById(R.id.valider);
@@ -77,7 +84,7 @@ public class ModifPerso extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                 InfoBDD info = null;
+                InfoBDD info = null;
 
                 EditText editpoids = (EditText) findViewById (R.id.mpoids);
                 String nbpoids = editpoids.getText().toString();
