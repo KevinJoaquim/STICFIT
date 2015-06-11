@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.List;
@@ -39,7 +40,8 @@ public class Historique extends AppCompatActivity {
         datasource = new PompeDataSource(this);
         datasource.open();
 
-
+        final TextView histoEmpty=(TextView) findViewById(R.id.histoEmpty);
+        histoEmpty.setVisibility(View.GONE);
         // utilisez SimpleCursorAdapter pour afficher les
         // éléments dans une ListView
         final ArrayAdapter<SeanceBDD> listAdapter = new ArrayAdapter<SeanceBDD>(this, android.R.layout.simple_list_item_checked, dataSourceSeance.getAllComments());
@@ -52,6 +54,8 @@ public class Historique extends AppCompatActivity {
         setData(null);
 
         histoList.setAdapter(listAdapter);
+
+
 
         histoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private SeanceDataSource dataSourceSeance;
@@ -142,6 +146,13 @@ public class Historique extends AppCompatActivity {
             }
 
         });
+
+        if(listAdapter.isEmpty()){
+            Delete.setVisibility(View.GONE);
+            Afficher.setVisibility(View.GONE);
+            histoEmpty.setVisibility(View.VISIBLE);
+
+        }
     }
 
     public void setData(SeanceBDD data) {

@@ -272,6 +272,7 @@ public class Exe extends Activity implements SensorEventListener {
                             TextView t1 = (TextView) findViewById(R.id.nbRepet);
                             String j = Integer.toString(h);
                             t1.setText(j);
+                            CalculKal(exo);
 
                             player = MediaPlayer.create(Exe.this, R.raw.airhorn);
                             player.start();
@@ -298,6 +299,7 @@ public class Exe extends Activity implements SensorEventListener {
                             TextView t1 = (TextView) findViewById(R.id.nbRepet);
                             String j = Integer.toString(h);
                             t1.setText(j);
+                            CalculKal(exo);
 
                             //On save et on incrémente une série
                             save();
@@ -515,6 +517,7 @@ public class Exe extends Activity implements SensorEventListener {
                             TextView t1 = (TextView) findViewById(R.id.nbRepet);
                             String j = Integer.toString(h);
                             t1.setText(j);
+                            CalculKal(exo);
 
                             //Avertisseur sonore fin de séance
                             player = MediaPlayer.create(Exe.this, R.raw.airhorn);
@@ -545,6 +548,7 @@ public class Exe extends Activity implements SensorEventListener {
                             TextView t1 = (TextView) findViewById(R.id.nbRepet);
                             String j = Integer.toString(h);
                             t1.setText(j);
+                            CalculKal(exo);
 
                             //On save et on incrémente la série
                             save();
@@ -594,7 +598,7 @@ public class Exe extends Activity implements SensorEventListener {
 
 
                     }else{
-                        //Ici incrémentation des repetitions tant que h est inferieur a nbRepPerso
+                        //Ici incrémentation des repetitions tant que h(repetition) est inferieur a nbRepPerso
                         h++;
                         TextView t1 = (TextView) findViewById(R.id.nbRepet);
                         String j = Integer.toString(h);
