@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="4dp"
+    android:background="#080808"
+    android:paddingTop="0dp"
     tools:context=".MainActivity"
     >
 
@@ -13,9 +14,16 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Exercices"
-        android:textSize="20dp"
         android:id="@+id/Exercice"
-       />
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+
+        />
 
     <Button
         android:layout_width="match_parent"
@@ -23,15 +31,29 @@
         android:layout_weight="1"
         android:text="Historique"
         android:id="@+id/Historique"
-        android:textSize="20dp" />
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Paramètres"
-        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:id="@+id/Parametre"
+
          />
 
 </LinearLayout>
