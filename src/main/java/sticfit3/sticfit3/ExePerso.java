@@ -31,7 +31,9 @@ public class ExePerso extends AppCompatActivity{
             EditText secondes = (EditText) findViewById(R.id.secRepos);
             @Override
             public void afterTextChanged(Editable s) {
+
                 if (!s.toString().isEmpty()) {
+
                     LayoutInflater inflater = getLayoutInflater();
                     View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
 
@@ -50,7 +52,7 @@ public class ExePerso extends AppCompatActivity{
                         minutes.setText("");
 
                     }else if(!secondes.getText().toString().isEmpty()) {
-                        if(Integer.valueOf(secondes.getText().toString())==0) {
+                        if(Integer.valueOf(secondes.getText().toString())==0 && Integer.valueOf(s.toString()) <= 0) {
 
                             TextView text = (TextView) layout.findViewById(R.id.text);
                             Toast toast = new Toast(getApplicationContext());
@@ -107,7 +109,7 @@ public class ExePerso extends AppCompatActivity{
                         secondes.setText("");
 
                     }else if(!minutes.getText().toString().isEmpty()) {
-                            if(Integer.valueOf(minutes.getText().toString())==0){
+                            if(Integer.valueOf(minutes.getText().toString())== 0 && Integer.valueOf(s.toString()) <= 0){
                                 TextView text = (TextView) layout.findViewById(R.id.text);
                                 Toast toast = new Toast(getApplicationContext());
                                 toast.setView(layout);
