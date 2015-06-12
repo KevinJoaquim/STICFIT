@@ -26,14 +26,6 @@
             android:name=".Exe"
             android:label="Séance" >
         </activity>
-        <activity
-            android:name=".Parametre"
-            android:label="Paramètres"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="sticfit3.sticfit3.MainActivity" />
-        </activity>
 
         <activity
             android:name=".Historique"
@@ -57,20 +49,20 @@
         <activity
             android:name=".Info"
             android:label="Informations"
-            android:parentActivityName=".Parametre" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sticfit3.sticfit3.Parametre" />
+                android:value="sticfit3.sticfit3.MainActivity" />
 
         </activity>
 
         <activity
             android:name=".InfoPerso"
             android:label="Mon profil"
-            android:parentActivityName=".Parametre" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sticfit3.sticfit3.Parametre" />
+                android:value="sticfit3.sticfit3.MainActivity" />
 
         </activity>
         <activity

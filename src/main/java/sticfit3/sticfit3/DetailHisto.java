@@ -13,7 +13,7 @@ import android.widget.ListView;
 /**
  * Created by geoffrey on 04/06/2015.
  */
-public class DetailHisto extends AppCompatActivity{
+public class DetailHisto extends MainActivity{
 
     private PompeDataSource datasource;
 

@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundstyle"
     >
 
 <TextView
@@ -42,7 +43,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Re/start"
+            android:text="Start"
+            android:drawableRight="@drawable/ic_action_play"
+            android:textSize="13sp"
+            android:background="@drawable/buttonshape"
+            android:layout_marginRight="15dip"
             android:id="@+id/Start"
 
              />
@@ -51,7 +56,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Reset"
+            android:text="Stop"
+            android:drawableRight="@drawable/ic_action_stop"
+            android:textSize="13sp"
+            android:background="@drawable/buttonshape"
             android:id="@+id/Reset"
 
            />
@@ -61,6 +69,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Pause"
+            android:drawableRight="@drawable/ic_action_pause"
+            android:textSize="13sp"
+            android:layout_marginLeft="15dip"
+            android:background="@drawable/buttonshape"
             android:id="@+id/Pause"
 
             />
@@ -163,6 +175,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="13sp"
+                android:background="@drawable/buttonshape"
                 android:text="Série+1"
                 android:id="@+id/SerieAdd"
                 />
@@ -172,6 +186,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="13sp"
+                android:background="@drawable/buttonshape"
                 android:text="Reset All"
                 android:id="@+id/ResetAll"
                 />
@@ -180,6 +196,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="13sp"
+                android:background="@drawable/buttonshape"
                 android:text="Rep +1"
                 android:id="@+id/Rep1"
                 />
@@ -191,12 +209,18 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Sauvegarder et quitter"
+        android:textSize="13sp"
+        android:background="@drawable/buttonshape"
+        android:drawableRight="@drawable/ic_action_save"
         android:id="@+id/SaveAll" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="13sp"
+        android:background="@drawable/buttonshape"
+        android:drawableRight="@drawable/ic_action_remove"
         android:text="Quitter"
         android:id="@+id/Exit"/>
 </LinearLayout>

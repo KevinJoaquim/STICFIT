@@ -41,25 +41,14 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        //bouton page paramètre
-        final Button ParametreButton = (Button) findViewById(R.id.Parametre);
-        ParametreButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                SharedPreferenceManager.instance().persistTimeSpentOnLevel(0);
-                Intent intent = new Intent(MainActivity.this, Parametre.class);
-                startActivity(intent);
-            }
-        });
-        }
-
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
@@ -70,8 +59,13 @@ public class MainActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_profil) {
+            Intent intent = new Intent(this, InfoPerso.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_info) {
+            Intent intent = new Intent(this, Info.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

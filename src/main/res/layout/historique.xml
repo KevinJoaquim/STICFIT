@@ -3,6 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="5dp"
+    android:background="@drawable/backgroundstyle"
+
     >
 
 
@@ -31,19 +34,29 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Afficher"
-            android:textSize="20dp"
+            android:textSize="13sp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:background="@drawable/buttonshape"
+            android:drawableLeft="@drawable/ic_action_view_as_list"
             android:id="@+id/afficher"
             />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Supprimer"
-            android:textSize="20dp"
+            android:layout_marginRight="5dp"
+
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttonshape"
+            android:drawableLeft="@drawable/ic_action_discard"
+            android:textSize="13sp"
             android:id="@+id/delete"
              />
 

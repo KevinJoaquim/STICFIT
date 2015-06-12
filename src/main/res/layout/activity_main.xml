@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="20dp"
+    android:paddingRight="10dp"
     android:weightSum="3"
     android:background="@drawable/backgroundstyle"
     tools:context=".MainActivity"
@@ -37,13 +37,13 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="0"
             android:text="Exercices"
             android:id="@+id/Exercice"
             android:textColor="#000000"
 
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:background="@drawable/buttonshape"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
@@ -68,40 +68,19 @@
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1.5"
             android:text="Historique"
             android:id="@+id/Historique"
             android:textColor="#000000"
-
-            android:textSize="15sp"
+            android:drawableLeft="@drawable/ic_action_view_as_list"
+            android:textSize="13sp"
             android:background="@drawable/buttonshape"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
             android:shadowDy="0"
-            android:shadowRadius="5"
-            android:layout_marginRight="5dip"
-            />
-
-
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1.5"
-            android:text="Paramètres"
-            android:textColor="#000000"
-            android:textSize="15sp"
-
-            android:background="@drawable/buttonshape"
-            android:shadowColor="#A8A8A8"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
-            android:id="@+id/Parametre"
-            android:layout_marginLeft="5dip" />
+            android:shadowRadius="5" />
 
     </LinearLayout>
 </LinearLayout>

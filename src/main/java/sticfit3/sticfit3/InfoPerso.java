@@ -20,7 +20,7 @@ import java.util.Random;
 /**
  * Created by kevin on 03/06/2015.
  */
-public class InfoPerso extends AppCompatActivity {
+public class InfoPerso extends MainActivity {
     private InfoDataSource datasource;
 
 

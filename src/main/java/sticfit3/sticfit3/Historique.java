@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by kevin on 23/04/2015.
  */
-public class Historique extends AppCompatActivity {
+public class Historique extends MainActivity {
 
     private SeanceDataSource dataSourceSeance;
     private PompeDataSource datasource;

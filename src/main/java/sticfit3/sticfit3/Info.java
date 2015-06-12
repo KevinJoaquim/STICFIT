@@ -9,7 +9,7 @@ import android.widget.EditText;
 /**
  * Created by kevin on 23/04/2015.
  */
-public class Info extends Parametre {
+public class Info extends MainActivity {
 
         private EditText emailSubject = null;
         private EditText emailBody = null;

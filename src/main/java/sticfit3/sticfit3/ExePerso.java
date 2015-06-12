@@ -17,7 +17,7 @@ import android.widget.Toast;
 /**
  * Created by geoffrey on 05/06/2015.
  */
-public class ExePerso extends AppCompatActivity{
+public class ExePerso extends MainActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -23,7 +23,7 @@ import java.util.Random;
 /**
  * Created by kevin on 05/06/2015.
  */
-public class ModifPerso extends AppCompatActivity {
+public class ModifPerso extends MainActivity {
     private InfoDataSource datasource;
     private RadioGroup radioSexGroup;
     private RadioButton radioSexButton;

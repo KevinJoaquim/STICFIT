@@ -439,7 +439,7 @@ public class Exe extends Activity implements SensorEventListener {
     public void onReset() {
         mChronometer.setBase(SystemClock.elapsedRealtime());
         timeWhenStopped = 1;
-        onPause();
+        onPauseCH();
 
     }
 
