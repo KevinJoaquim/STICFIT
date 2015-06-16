@@ -43,7 +43,7 @@
             android:id="@+id/Exercice"
             android:textColor="#000000"
 
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:background="@drawable/buttonshape"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
@@ -75,7 +75,8 @@
             android:id="@+id/Historique"
             android:textColor="#000000"
             android:drawableLeft="@drawable/ic_action_view_as_list"
-            android:textSize="13sp"
+            android:textSize="20sp"
+            android:elegantTextHeight="true"
             android:background="@drawable/buttonshape"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"

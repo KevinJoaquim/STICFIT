@@ -1,21 +1,30 @@
 package sticfit3.sticfit3;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class ListExercice extends MainActivity {
 
+
+    String[] tab ={"Pompe","Abdo"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listexe);
+
+        final ListView listExe = (ListView)findViewById(R.id.listExe);
+        ArrayAdapter arrayadp=new ArrayAdapter(this,  android.R.layout.simple_list_item_1, tab);
+        listExe.setAdapter(arrayadp);
     }
 
 
@@ -25,7 +34,7 @@ public class ListExercice extends MainActivity {
         CheckBox exPerso = (CheckBox) findViewById(R.id.exPerso);
 
         //si la case est coché on redirige vers exePerso
-        if (exPerso.isChecked()) {
+       /* if (exPerso.isChecked()) {
 
             Intent intentPerso = new Intent(this, ExePerso.class);
 
@@ -66,6 +75,6 @@ public class ListExercice extends MainActivity {
             startActivity(intent);
             }
 
-
+*/
     }
 }
