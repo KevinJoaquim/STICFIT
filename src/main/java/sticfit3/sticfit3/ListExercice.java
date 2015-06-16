@@ -8,15 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 public class ListExercice extends MainActivity {
 
 
-    String[] tab ={"Pompe","Abdo"};
+    String[] tab ={"Pompe","Biceps"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,30 +29,41 @@ public class ListExercice extends MainActivity {
         final ListView listExe = (ListView)findViewById(R.id.listExe);
         ArrayAdapter arrayadp=new ArrayAdapter(this,  android.R.layout.simple_list_item_1, tab);
         listExe.setAdapter(arrayadp);
+
+        listExe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    choiceExe(listExe.getItemAtPosition(i));
+            }
+
+
+        });
     }
 
 
-    public void choiceExe(View view) {
+    public void choiceExe(Object exe) {
 
-        TextView exo;
+        String exo;
         CheckBox exPerso = (CheckBox) findViewById(R.id.exPerso);
 
         //si la case est coché on redirige vers exePerso
-       /* if (exPerso.isChecked()) {
+       if (exPerso.isChecked()) {
 
             Intent intentPerso = new Intent(this, ExePerso.class);
 
-                switch (view.getId()) {
-                    case R.id.pompe:
-                        exo = (TextView) findViewById(R.id.pompe);
+                switch (exe.toString()) {
+                    case "Pompe":
+                        exo = "Pompe";
 
-                        intentPerso.putExtra("Exercice", exo.getText());
+                        intentPerso.putExtra("Exercice", exo);
 
 
                         break;
-                    case R.id.biceps:
-                        exo = (TextView) findViewById(R.id.biceps);
-                        intentPerso.putExtra("Exercice", exo.getText());
+                    case "Biceps":
+                        exo = "Biceps";
+                        intentPerso.putExtra("Exercice", exo);
                         break;
                 }
             //On start l'acctivité
@@ -59,15 +74,15 @@ public class ListExercice extends MainActivity {
             Intent intent = new Intent(this, Exe.class);
             intent.putExtra("nbSeriePerso", "");
             intent.putExtra("nbRepPerso","");
-                switch (view.getId()) {
+                switch (exe.toString()) {
 
-                    case R.id.pompe:
-                        exo = (TextView) findViewById(R.id.pompe);
-                        intent.putExtra("Exercice", exo.getText());
+                    case "Pompe":
+                        exo = "Pompe";
+                        intent.putExtra("Exercice", exo);
                         break;
-                    case R.id.biceps:
-                        exo = (TextView) findViewById(R.id.biceps);
-                        intent.putExtra("Exercice", exo.getText());
+                    case "Biceps":
+                        exo = "Biceps";
+                        intent.putExtra("Exercice", exo);
                         break;
 
                 }
@@ -75,6 +90,6 @@ public class ListExercice extends MainActivity {
             startActivity(intent);
             }
 
-*/
+
     }
 }
