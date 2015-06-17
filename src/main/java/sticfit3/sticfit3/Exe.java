@@ -50,7 +50,9 @@ public class Exe extends Activity implements SensorEventListener {
     private int i = 1;
     private double calfinal = 0;
 
-    MediaPlayer player;
+    MediaPlayer playerFin,playerFinRep,playerBeep;
+
+
 
     SeanceBDD laSeance = null;
 
@@ -59,6 +61,10 @@ public class Exe extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exe);
 
+        //on initialise les son
+        playerFin = MediaPlayer.create(Exe.this, R.raw.gongfin);
+        playerFinRep = MediaPlayer.create(Exe.this, R.raw.gongrep);
+        playerBeep = MediaPlayer.create(Exe.this, R.raw.beep29);
 
         //Connect to BDD
         dataSourceSeance = new SeanceDataSource(this);
@@ -142,12 +148,32 @@ public class Exe extends Activity implements SensorEventListener {
             }
         });
 
+        final Button btnGo = (Button) findViewById(R.id.btnGo);
+        btnGo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+                btnGo.setVisibility(View.GONE);
+            }
+        });
+
         //Si en mode personnalisée on cache les boutons  du chrono, temps de repos automatique
 
         if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
+
+            // On desactivation le capteur pour seance perso
+            sensorManager.unregisterListener(Exe.this, proximity);
+
             Start.setVisibility(View.GONE);
             Stop.setVisibility(View.GONE);
             Effacer.setVisibility(View.GONE);
+            btnGo.setVisibility(View.VISIBLE);
+
+        }else {
+            btnGo.setVisibility(View.GONE);
+            sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
         }
 
         // boutton exit quitter la page sans sauvegarder
@@ -252,14 +278,20 @@ public class Exe extends Activity implements SensorEventListener {
             //On cache ce bouton utiliser que pour le mode développement virtuel
            final Button Rep1 = (Button) findViewById(R.id.Rep1);
 
-            Rep1.setVisibility(View.VISIBLE);
+            Rep1.setVisibility(View.GONE);
             Rep1.setOnClickListener(new View.OnClickListener() {
 
                 Intent intent = getIntent();
                 String exo = intent.getStringExtra("Exercice");
+
             @Override
             public void onClick(View v) {
                 datasource.open();
+
+                playerFin = MediaPlayer.create(Exe.this, R.raw.gongfin);
+                playerFinRep = MediaPlayer.create(Exe.this, R.raw.gongrep);
+                playerBeep = MediaPlayer.create(Exe.this, R.raw.beep29);
+
                 if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
                     //On verifie si h est superieur ou égale a nbRepPerso - 1 car sinon on répétition en trop
                     if (h >= Integer.parseInt(nbRepPerso)-1){
@@ -274,8 +306,8 @@ public class Exe extends Activity implements SensorEventListener {
                             t1.setText(j);
                             CalculKal(exo);
 
-                            player = MediaPlayer.create(Exe.this, R.raw.airhorn);
-                            player.start();
+
+                            playerFin.start();
 
                             LayoutInflater inflater = getLayoutInflater();
                             View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
@@ -304,10 +336,13 @@ public class Exe extends Activity implements SensorEventListener {
                             //On save et on incrémente une série
                             save();
                             SerieAdd();
-                            player = MediaPlayer.create(Exe.this, R.raw.airhorn);
-                            player.start();
+
+                            playerFinRep.start();
+
                             sensorManager.unregisterListener(Exe.this, proximity);
+
                             Rep1.setVisibility(View.GONE);
+
                             Start.performClick();
                             mChronometer.setOnChronometerTickListener(
                                 new Chronometer.OnChronometerTickListener(){
@@ -326,8 +361,8 @@ public class Exe extends Activity implements SensorEventListener {
                                             //Le pause garde le chrono a 0 pour eviter la boucle
                                             Stop.performClick();
 
-                                            player = MediaPlayer.create(Exe.this, R.raw.airhorn);
-                                            player.start();
+                                            playerFinRep.start();
+
                                             Rep1.setVisibility(View.VISIBLE);
                                         }
                                     }
@@ -416,7 +451,19 @@ public class Exe extends Activity implements SensorEventListener {
     @Override
     protected void onResume() {
         datasource.open();
-        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+
+        Intent intent = getIntent();
+        final String nbSeriePerso = intent.getStringExtra("nbSeriePerso");
+        final String nbRepPerso = intent.getStringExtra("nbRepPerso");
+
+        if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
+            // On desactivation le capteur pour seance perso
+            sensorManager.unregisterListener(Exe.this, proximity);
+
+        }else {
+
+            sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+        }
 
         super.onResume();
 
@@ -496,12 +543,15 @@ public class Exe extends Activity implements SensorEventListener {
         final String nbRepPerso = intent.getStringExtra("nbRepPerso");
 
 
+
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             // the light value
             proximityValue = event.values[0];
             // do a log (for the fun, ok don't do a log...)
             if(proximityValue == 1.0){
                 datasource.open();
+
+
                 if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
 
                     //On verifie si le nombre de Rep est superieur ou égale à nbRepPerso - 1 car sinon une répétition en trop
@@ -520,8 +570,8 @@ public class Exe extends Activity implements SensorEventListener {
                             CalculKal(exo);
 
                             //Avertisseur sonore fin de séance
-                            player = MediaPlayer.create(Exe.this, R.raw.airhorn);
-                            player.start();
+
+                            playerFin.start();
 
                             //On indique que la séance est terminée
                             LayoutInflater inflater = getLayoutInflater();
@@ -555,8 +605,9 @@ public class Exe extends Activity implements SensorEventListener {
                             SerieAdd();
 
                             //Bip sonore fin de série
-                            player = MediaPlayer.create(Exe.this, R.raw.airhorn);
-                            player.start();
+
+                            playerFinRep.start();
+
 
                             //Désactiver capteur !
                             sensorManager.unregisterListener(Exe.this, proximity);
@@ -565,6 +616,7 @@ public class Exe extends Activity implements SensorEventListener {
                             //On lance le chrono
                             final Button Start = (Button) findViewById(R.id.Start);
                             Start.performClick();
+
                             mChronometer.setOnChronometerTickListener(
                                     new Chronometer.OnChronometerTickListener(){
                                         //On rend les boutons accessibles dans cette fonction
@@ -585,8 +637,8 @@ public class Exe extends Activity implements SensorEventListener {
                                                 Stop.performClick();
 
                                                 //Bip  sonore reprise de repetition
-                                                player = MediaPlayer.create(Exe.this, R.raw.airhorn);
-                                                player.start();
+
+                                                playerFinRep.start();
 
                                                 //REACTIVER LE CAPTEUR
                                                 sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
@@ -601,6 +653,10 @@ public class Exe extends Activity implements SensorEventListener {
                         //Ici incrémentation des repetitions tant que h(repetition) est inferieur a nbRepPerso
                         h++;
                         TextView t1 = (TextView) findViewById(R.id.nbRepet);
+                        //Avertisseur 1 rep
+
+                        playerBeep.start();
+
                         String j = Integer.toString(h);
                         t1.setText(j);
                         CalculKal(exo);

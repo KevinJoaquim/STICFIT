@@ -62,7 +62,7 @@ public class InfoBDD {
     }
 
     public String toString(){
-        return "\n\n\nPoids : "+poids+"\n\n\nTaille : "+taille+"\n\n\nAge : "+age+"\n\n\nSexe : "+sexe;
+        return "\nPoids : "+poids+"\n\n\nTaille : "+taille+"\n\n\nAge : "+age+"\n\n\nSexe : "+sexe;
     }
 }
 

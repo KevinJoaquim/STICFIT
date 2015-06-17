@@ -69,8 +69,10 @@ public class ModifPerso extends MainActivity {
 
 
             // le sexe est un Homme il checkera radio1 sinon radio2
-            if(datasource.getCommentById(1).getSexe() == "Homme"){
+            Log.i("test","sexe:"+data.getSexe());
+            if(data.getSexe().equals("Homme")){
                 radio1.setChecked(true);
+                radio2.setChecked(false);
 
             }else{
                 radio2.setChecked(true);
