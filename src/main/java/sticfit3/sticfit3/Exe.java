@@ -1,6 +1,9 @@
 package sticfit3.sticfit3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,6 +14,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +56,7 @@ public class Exe extends Activity implements SensorEventListener {
 
     MediaPlayer playerFin,playerFinRep,playerBeep;
 
-
+    static final int ACTIVITY1_REQUEST = 0;
 
     SeanceBDD laSeance = null;
 
@@ -161,32 +165,45 @@ public class Exe extends Activity implements SensorEventListener {
 
         //Si en mode personnalisée on cache les boutons  du chrono, temps de repos automatique
 
-        if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
-
-            // On desactivation le capteur pour seance perso
-            sensorManager.unregisterListener(Exe.this, proximity);
-
-            Start.setVisibility(View.GONE);
-            Stop.setVisibility(View.GONE);
-            Effacer.setVisibility(View.GONE);
-            btnGo.setVisibility(View.VISIBLE);
-
-        }else {
-            btnGo.setVisibility(View.GONE);
-            sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
-        }
 
         // boutton exit quitter la page sans sauvegarder
         final Button ExitButton = (Button) findViewById(R.id.Exit);
+
         ExitButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                datasource.open();
-                datasource.deleteComment(Long.toString(getSeance().getId()));
-                dataSourceSeance.deleteCommentById(getSeance().getId());
-                Intent intent = new Intent(Exe.this, MainActivity.class);
-                startActivity(intent);
+                sensorManager.unregisterListener(Exe.this, proximity);
+                new AlertDialog.Builder(Exe.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Quitter")
+                        .setMessage("Etes-vous sûr de vouloir quitter ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                datasource.open();
+                                datasource.deleteComment(Long.toString(getSeance().getId()));
+                                dataSourceSeance.deleteCommentById(getSeance().getId());
+                                Intent intent = new Intent(Exe.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+
+                            }
+
+                        }).show();
+
+
             }
         });
 
@@ -248,27 +265,51 @@ public class Exe extends Activity implements SensorEventListener {
 
         //boutton sauvegarder tout
         final Button SaveAll = (Button) findViewById(R.id.SaveAll);
+
         SaveAll.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
+                sensorManager.unregisterListener(Exe.this, proximity);
                 //Sauvegarde de la bdd historique
-                save();
+                new AlertDialog.Builder(Exe.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Quitter")
+                        .setMessage("Etes-vous sûr de vouloir quitter ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
 
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                TextView text = (TextView) layout.findViewById(R.id.text);
-                text.setText("Votre séance a bien été sauvegardée");
+                                save();
 
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.show();
-                //redirection accueil
-                Intent intent = new Intent(Exe.this, MainActivity.class);
-                startActivity(intent);
+                                LayoutInflater inflater = getLayoutInflater();
+                                View layout = inflater.inflate(R.layout.toastsave, (ViewGroup) findViewById(R.id.toast_layout_root));
+
+                                TextView text = (TextView) layout.findViewById(R.id.text);
+                                text.setText("Votre séance a bien été sauvegardée");
+
+                                Toast toast = new Toast(getApplicationContext());
+                                toast.setView(layout);
+                                toast.setDuration(Toast.LENGTH_SHORT);
+                                toast.show();
+                                //redirection accueil
+                                Intent intent = new Intent(Exe.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+
+                            }
+
+                        }).show();
+
 
             }
         });
@@ -389,6 +430,21 @@ public class Exe extends Activity implements SensorEventListener {
                 }
             }
         });
+        if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
+
+            // On desactivation le capteur pour seance perso
+            sensorManager.unregisterListener(Exe.this, proximity);
+
+            Start.setVisibility(View.GONE);
+            Stop.setVisibility(View.GONE);
+            Effacer.setVisibility(View.GONE);
+            btnGo.setVisibility(View.VISIBLE);
+
+        }else {
+
+            btnGo.setVisibility(View.GONE);
+            sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+        }
 
 
     }
@@ -585,6 +641,10 @@ public class Exe extends Activity implements SensorEventListener {
                             toast.setDuration(Toast.LENGTH_LONG);
                             toast.show();
 
+                            Button SaveAll = (Button) findViewById(R.id.SaveAll);
+                            Button Exit = (Button) findViewById(R.id.Exit);
+
+
                             //DESACTIVER LE CAPTEUR ICI ! Seance terminée
                             sensorManager.unregisterListener(Exe.this, proximity);
 
@@ -617,11 +677,19 @@ public class Exe extends Activity implements SensorEventListener {
                             final Button Start = (Button) findViewById(R.id.Start);
                             Start.performClick();
 
+                            Button SaveAll = (Button) findViewById(R.id.SaveAll);
+                            Button Exit = (Button) findViewById(R.id.Exit);
+
+
                             mChronometer.setOnChronometerTickListener(
                                     new Chronometer.OnChronometerTickListener(){
                                         //On rend les boutons accessibles dans cette fonction
                                         Button Stop = (Button) findViewById(R.id.Pause);
                                         Button Effacer = (Button) findViewById(R.id.Reset);
+                                        Button SaveAll = (Button) findViewById(R.id.SaveAll);
+                                        Button Exit = (Button) findViewById(R.id.Exit);
+
+
                                         Intent intent = getIntent();
                                         public void onChronometerTick(Chronometer chronometer){
 
@@ -635,6 +703,8 @@ public class Exe extends Activity implements SensorEventListener {
                                                 Effacer.performClick();
                                                 //Le pause garde le chrono a 0seconde pour eviter la boucle
                                                 Stop.performClick();
+
+
 
                                                 //Bip  sonore reprise de repetition
 
@@ -653,12 +723,11 @@ public class Exe extends Activity implements SensorEventListener {
                         //Ici incrémentation des repetitions tant que h(repetition) est inferieur a nbRepPerso
                         h++;
                         TextView t1 = (TextView) findViewById(R.id.nbRepet);
-                        //Avertisseur 1 rep
-
-                        playerBeep.start();
-
                         String j = Integer.toString(h);
                         t1.setText(j);
+
+                        //Avertisseur 1 rep
+                        playerBeep.start();
                         CalculKal(exo);
                     }
                 }else {
@@ -667,6 +736,13 @@ public class Exe extends Activity implements SensorEventListener {
                     TextView t1 = (TextView) findViewById(R.id.nbRepet);
                     String j = Integer.toString(h);
                     t1.setText(j);
+
+                    //Avertisseur 1 rep
+                    playerBeep.start();
+
+
+
+
                     CalculKal(exo);
 
 
@@ -715,4 +791,52 @@ public class Exe extends Activity implements SensorEventListener {
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+        return;
+    }
+
+
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            sensorManager.unregisterListener(Exe.this, proximity);
+            //Ask the user if they want to quit
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Quitter")
+                    .setMessage("Etes-vous sûr de vouloir quitter ?")
+                    .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            datasource.open();
+                            datasource.deleteComment(Long.toString(getSeance().getId()));
+                            dataSourceSeance.deleteCommentById(getSeance().getId());
+                            //Stop the activity
+                            Exe.this.finish();
+                        }
+
+                    })
+                    .setNegativeButton("Non",  new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+
+                        }
+
+                    }).show();
+            return false;
+        }
+        else {
+            return super.onKeyUp(keyCode, event);
+        }
+
+    }
+
 }
