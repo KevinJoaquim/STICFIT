@@ -72,6 +72,7 @@ public class InfoPerso extends MainActivity {
     @Override
     protected void onPause()
     {
+        datasource.close();
         // and don't forget to pause the thread that redraw the xyAccelerationView
         super.onPause();
     }

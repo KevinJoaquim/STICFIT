@@ -20,8 +20,8 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="217dp"
-            android:layout_height="179dp"
+            android:layout_width="260dp"
+            android:layout_height="240dp"
             android:id="@+id/imageView"
             android:src="@drawable/url2" />
     </LinearLayout>

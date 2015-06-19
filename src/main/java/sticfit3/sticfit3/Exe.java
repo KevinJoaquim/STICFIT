@@ -12,6 +12,8 @@ import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -47,18 +49,19 @@ public class Exe extends Activity implements SensorEventListener {
 
     //chronomètre
     private Chronometer mChronometer;
-    private long timeWhenStopped=1 ;
+    private long timeWhenStopped = 1;
 
     // variable serie, repetitio et calorie
-    private int h =0;
+    private int h = 0;
     private int i = 1;
     private double calfinal = 0;
 
-    MediaPlayer playerFin,playerFinRep,playerBeep;
+    MediaPlayer playerFin, playerFinRep, playerBeep;
 
     static final int ACTIVITY1_REQUEST = 0;
 
     SeanceBDD laSeance = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,6 +190,9 @@ public class Exe extends Activity implements SensorEventListener {
                                 datasource.open();
                                 datasource.deleteComment(Long.toString(getSeance().getId()));
                                 dataSourceSeance.deleteCommentById(getSeance().getId());
+                                playerBeep.stop();
+                                playerFinRep.stop();
+                                playerFin.stop();
                                 Intent intent = new Intent(Exe.this, MainActivity.class);
                                 startActivity(intent);
                             }
@@ -293,6 +299,10 @@ public class Exe extends Activity implements SensorEventListener {
                                 toast.setView(layout);
                                 toast.setDuration(Toast.LENGTH_SHORT);
                                 toast.show();
+
+                                playerBeep.stop();
+                                playerFinRep.stop();
+                                playerFin.stop();
                                 //redirection accueil
                                 Intent intent = new Intent(Exe.this, MainActivity.class);
                                 startActivity(intent);
@@ -384,7 +394,7 @@ public class Exe extends Activity implements SensorEventListener {
 
                             Rep1.setVisibility(View.GONE);
 
-                            Start.performClick();
+                            //Start.performClick();
                             mChronometer.setOnChronometerTickListener(
                                 new Chronometer.OnChronometerTickListener(){
                                     Button Stop = (Button) findViewById(R.id.Pause);
@@ -511,10 +521,11 @@ public class Exe extends Activity implements SensorEventListener {
         Intent intent = getIntent();
         final String nbSeriePerso = intent.getStringExtra("nbSeriePerso");
         final String nbRepPerso = intent.getStringExtra("nbRepPerso");
-
+        final Button btnGo = (Button) findViewById(R.id.btnGo);
         if(!nbRepPerso.isEmpty() && !nbSeriePerso.isEmpty()) {
             // On desactivation le capteur pour seance perso
             sensorManager.unregisterListener(Exe.this, proximity);
+            btnGo.setVisibility(View.VISIBLE);
 
         }else {
 
@@ -668,54 +679,54 @@ public class Exe extends Activity implements SensorEventListener {
 
                             playerFinRep.start();
 
-
                             //Désactiver capteur !
                             sensorManager.unregisterListener(Exe.this, proximity);
                             Log.i("test","Capteur Désactivé");
 
+
                             //On lance le chrono
-                            final Button Start = (Button) findViewById(R.id.Start);
-                            Start.performClick();
+                            //final Button Start = (Button) findViewById(R.id.Start);
+                            //Start.performClick();
 
-                            Button SaveAll = (Button) findViewById(R.id.SaveAll);
-                            Button Exit = (Button) findViewById(R.id.Exit);
-
-
-                            mChronometer.setOnChronometerTickListener(
-                                    new Chronometer.OnChronometerTickListener(){
-                                        //On rend les boutons accessibles dans cette fonction
-                                        Button Stop = (Button) findViewById(R.id.Pause);
-                                        Button Effacer = (Button) findViewById(R.id.Reset);
-                                        Button SaveAll = (Button) findViewById(R.id.SaveAll);
-                                        Button Exit = (Button) findViewById(R.id.Exit);
-
-
-                                        Intent intent = getIntent();
-                                        public void onChronometerTick(Chronometer chronometer){
-
-                                            //On recupère en temps réel
-                                            long myElapsedMillis=SystemClock.elapsedRealtime() - mChronometer.getBase();
-                                            final int minRepos =  Integer.valueOf(intent.getStringExtra("minRepos"));
-                                            final int secRepos = Integer.valueOf(intent.getStringExtra("secRepos"));
-
-                                            if(myElapsedMillis>=tempsRepos(minRepos,secRepos)){
-                                                //Le reset remet a 0seconde
-                                                Effacer.performClick();
-                                                //Le pause garde le chrono a 0seconde pour eviter la boucle
-                                                Stop.performClick();
+                            final int minRepos =  Integer.valueOf(intent.getStringExtra("minRepos"));
+                            final int secRepos = Integer.valueOf(intent.getStringExtra("secRepos"));
 
 
 
-                                                //Bip  sonore reprise de repetition
+                            CountDownTimer cT =  new CountDownTimer(tempsRepos(minRepos,secRepos), 1000) {
+                                final Button btnGo = (Button) findViewById(R.id.btnGo);
 
-                                                playerFinRep.start();
+                                public void onTick(long millisUntilFinished) {
 
-                                                //REACTIVER LE CAPTEUR
-                                                sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
-                                                Log.i("test","Capteur activé");
-                                            }
-                                        }
-                                    });
+
+                                    btnGo.setEnabled(false);
+                                    String v = String.format("%02d", millisUntilFinished/60000);
+                                    int va = (int)( (millisUntilFinished%60000)/1000);
+                                    mChronometer.setText(v+":"+String.format("%02d",va));
+
+                                }
+
+                                public void onFinish() {
+
+                                    mChronometer.setBase(SystemClock.elapsedRealtime() + SharedPreferenceManager.instance().getTimeSpentOnLevel());
+
+                                    //Bip  sonore reprise de repetition
+                                    playerFinRep.start();
+
+                                    btnGo.setVisibility(View.GONE);
+                                    btnGo.setEnabled(true);
+                                    
+                                    //REACTIVER LE CAPTEUR
+                                    sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);
+
+                                    Log.i("test","Capteur activé");
+
+                                }
+
+
+                            };
+                            cT.start();
+
                         }
 
 
@@ -762,9 +773,11 @@ public class Exe extends Activity implements SensorEventListener {
         // unregister every body
         datasource.close();
         sensorManager.unregisterListener(this, proximity);
+
         // and don't forget to pause the thread that redraw the xyAccelerationView
         super.onPause();
     }
+
     // fonction qui permet de changer le accuracy dans proximity
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -816,6 +829,9 @@ public class Exe extends Activity implements SensorEventListener {
                             datasource.open();
                             datasource.deleteComment(Long.toString(getSeance().getId()));
                             dataSourceSeance.deleteCommentById(getSeance().getId());
+                            playerBeep.stop();
+                            playerFinRep.stop();
+                            playerFin.stop();
                             //Stop the activity
                             Exe.this.finish();
                         }
