@@ -190,9 +190,13 @@ public class Exe extends Activity implements SensorEventListener {
                                 datasource.open();
                                 datasource.deleteComment(Long.toString(getSeance().getId()));
                                 dataSourceSeance.deleteCommentById(getSeance().getId());
+                                dataSourceSeance.close();
+                                datasource.close();
                                 playerBeep.stop();
                                 playerFinRep.stop();
                                 playerFin.stop();
+
+                                finish();
                                 Intent intent = new Intent(Exe.this, MainActivity.class);
                                 startActivity(intent);
                             }
@@ -304,8 +308,14 @@ public class Exe extends Activity implements SensorEventListener {
                                 playerFinRep.stop();
                                 playerFin.stop();
                                 //redirection accueil
+                                dataSourceSeance.close();
+                                datasource.close();
+
+
+                                finish();
                                 Intent intent = new Intent(Exe.this, MainActivity.class);
                                 startActivity(intent);
+
                             }
 
                         })
@@ -615,7 +625,7 @@ public class Exe extends Activity implements SensorEventListener {
             // the light value
             proximityValue = event.values[0];
             // do a log (for the fun, ok don't do a log...)
-            if(proximityValue == 1.0){
+            if(proximityValue == 0.0){
                 datasource.open();
 
 
@@ -832,8 +842,13 @@ public class Exe extends Activity implements SensorEventListener {
                             playerBeep.stop();
                             playerFinRep.stop();
                             playerFin.stop();
+                            dataSourceSeance.close();
+                            datasource.close();
+
                             //Stop the activity
-                            Exe.this.finish();
+                            finish();
+                            Intent intent = new Intent(Exe.this, MainActivity.class);
+                            startActivity(intent);
                         }
 
                     })

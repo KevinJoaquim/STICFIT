@@ -68,6 +68,7 @@ public class ListExercice extends MainActivity {
                 }
             //On start l'acctivité
             startActivity(intentPerso);
+           finish();
 
             }else {
             //Autrement on redirige vers exe directement et on passe les parametre Perso vide pour eviter erreur
@@ -88,7 +89,8 @@ public class ListExercice extends MainActivity {
                 }
             //On start l'activité
             startActivity(intent);
-            }
+           finish();
+       }
 
 
     }

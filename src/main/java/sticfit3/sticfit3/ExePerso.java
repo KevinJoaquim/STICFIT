@@ -213,6 +213,10 @@ public class ExePerso extends MainActivity{
 
             }
         });
+
+        /*public
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(myEditText.getWindowToken(), 0);*/
     }
 
     @Override
@@ -277,6 +281,7 @@ public class ExePerso extends MainActivity{
         }else{
             //Sinon on redirige
             startActivity(intent);
+            finish();
         }
 
 
