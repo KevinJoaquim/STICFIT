@@ -22,5 +22,6 @@
         android:text="Ajouter"
         android:id="@+id/ajouter"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonshape"
         android:layout_weight="0.42" />
 </LinearLayout>

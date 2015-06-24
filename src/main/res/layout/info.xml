@@ -19,16 +19,6 @@
         android:textIsSelectable="true" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Envoyez-nous un email"
-        android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.30"
-        android:gravity="center_vertical" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Objet:"
@@ -62,7 +52,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
         android:text="Envoyer"
         android:id="@+id/sent" />
+
 
 </LinearLayout>

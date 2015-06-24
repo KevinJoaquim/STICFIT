@@ -9,11 +9,11 @@
 
     <CheckBox
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="70dp"
         android:text="Exercice personnalisé"
+        android:textSize="20dp"
         android:id="@+id/exPerso"
-         />
+        android:checked="false" />
 
 
     <ListView
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        />
+        android:layout_gravity="bottom" />
 
 
 

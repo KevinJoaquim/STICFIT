@@ -20,7 +20,7 @@ import java.util.Objects;
 public class ListExercice extends MainActivity {
 
 
-    String[] tab ={"Pompe","Biceps"};
+    String[] tab ={"Pompes","Abdominaux", "Biceps"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +54,15 @@ public class ListExercice extends MainActivity {
             Intent intentPerso = new Intent(this, ExePerso.class);
 
                 switch (exe.toString()) {
-                    case "Pompe":
-                        exo = "Pompe";
+                    case "Pompes":
+                        exo = "Pompes";
+
+                        intentPerso.putExtra("Exercice", exo);
+
+
+                        break;
+                    case "Abdominaux":
+                        exo = "Abdominaux";
 
                         intentPerso.putExtra("Exercice", exo);
 
@@ -77,8 +84,12 @@ public class ListExercice extends MainActivity {
             intent.putExtra("nbRepPerso","");
                 switch (exe.toString()) {
 
-                    case "Pompe":
-                        exo = "Pompe";
+                    case "Pompes":
+                        exo = "Pompes";
+                        intent.putExtra("Exercice", exo);
+                        break;
+                    case "Abdominaux":
+                        exo = "Abdominaux";
                         intent.putExtra("Exercice", exo);
                         break;
                     case "Biceps":
