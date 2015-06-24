@@ -458,6 +458,8 @@ public class Exe extends Activity implements SensorEventListener {
             Start.setVisibility(View.GONE);
             Stop.setVisibility(View.GONE);
             Effacer.setVisibility(View.GONE);
+            ExitButton.setVisibility(View.GONE);
+            SaveAll.setVisibility(View.GONE);
             btnGo.setVisibility(View.VISIBLE);
 
         }else {
@@ -589,13 +591,13 @@ public class Exe extends Activity implements SensorEventListener {
     //Calcul Kalorie
     protected void CalculKal(String exo) {
         //Calcul de calorie pour les pompes, estimation de 1 pompes = 2 secondes soit 2 x 0.14(valeur en calorie d'une pompe) = 0.28
-        if (exo.equals("Pompe")) {
+
                         double calorie = 0.28;
                         calfinal = calorie + calfinal;
                                 TextView t2 = (TextView) findViewById(R.id.kl);
                                 String cal = Double.toString(calfinal);
                                 t2.setText(cal.substring(0, 3));
-        }
+
     }
 
 
@@ -663,8 +665,10 @@ public class Exe extends Activity implements SensorEventListener {
                             toast.show();
 
                             Button SaveAll = (Button) findViewById(R.id.SaveAll);
-                            Button Exit = (Button) findViewById(R.id.Exit);
+                            Button ExitButton = (Button) findViewById(R.id.Exit);
 
+                            ExitButton.setVisibility(View.VISIBLE);
+                            SaveAll.setVisibility(View.VISIBLE);
 
                             //DESACTIVER LE CAPTEUR ICI ! Seance terminée
                             sensorManager.unregisterListener(Exe.this, proximity);
@@ -701,7 +705,11 @@ public class Exe extends Activity implements SensorEventListener {
                             final int minRepos =  Integer.valueOf(intent.getStringExtra("minRepos"));
                             final int secRepos = Integer.valueOf(intent.getStringExtra("secRepos"));
 
+                            final Button ExitButton = (Button) findViewById(R.id.Exit);
+                            final Button SaveAll = (Button) findViewById(R.id.SaveAll);
 
+                            ExitButton.setVisibility(View.VISIBLE);
+                            SaveAll.setVisibility(View.VISIBLE);
 
                             CountDownTimer cT =  new CountDownTimer(tempsRepos(minRepos,secRepos), 1000) {
                                 final Button btnGo = (Button) findViewById(R.id.btnGo);
@@ -725,6 +733,8 @@ public class Exe extends Activity implements SensorEventListener {
 
                                     btnGo.setVisibility(View.GONE);
                                     btnGo.setEnabled(true);
+                                    ExitButton.setVisibility(View.GONE);
+                                    SaveAll.setVisibility(View.GONE);
                                     
                                     //REACTIVER LE CAPTEUR
                                     sensorManager.registerListener(Exe.this, proximity, SensorManager.SENSOR_DELAY_FASTEST);

@@ -7,16 +7,15 @@
     android:background="@drawable/backgroundstyle"
     >
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:id="@+id/Chronometre"
-    android:gravity="center"
-    android:layout_gravity="center_horizontal"
-    android:textSize="30dp"
-    android:textIsSelectable="true"
-    android:layout_weight="1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Chronometre"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textIsSelectable="true"
+        android:layout_weight="1"/>
 
     <Chronometer
     android:layout_width="match_parent"
@@ -39,23 +38,13 @@
     android:padding="4dp"
     android:layout_weight="1">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Go !"
-
-            android:textSize="15sp"
-            android:background="@drawable/buttonshape"
-            android:layout_marginRight="15dip"
-            android:id="@+id/btnGo" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Start"
-            android:drawableRight="@drawable/ic_action_play"
+            android:drawableLeft="@drawable/ic_action_play"
             android:textSize="13sp"
             android:background="@drawable/buttonshape"
             android:layout_marginRight="15dip"
@@ -68,7 +57,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Stop"
-            android:drawableRight="@drawable/ic_action_stop"
+            android:drawableLeft="@drawable/ic_action_stop"
             android:textSize="13sp"
             android:background="@drawable/buttonshape"
             android:id="@+id/Reset"
@@ -80,7 +69,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Pause"
-            android:drawableRight="@drawable/ic_action_pause"
+            android:drawableLeft="@drawable/ic_action_pause"
             android:textSize="13sp"
             android:layout_marginLeft="15dip"
             android:background="@drawable/buttonshape"
@@ -92,99 +81,19 @@
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Séries"
-                    android:id="@+id/SerieTxt"
-                     />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Répétitions"
-                    android:id="@+id/RepetitionTxt"
-                     />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Calories"
-                    android:id="@+id/calorieTxt"
-                    />
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:layout_weight="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/nbSerie"
-                    android:hint="1"
-                    android:text="1"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/nbRepet"
-                    android:hint="0"
-
-                 />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:hint="0"
-                            android:id="@+id/kl"
-                    />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:padding="4dp"
-        android:layout_weight="1">
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="1"
+       >
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:textSize="13sp"
                 android:background="@drawable/buttonshape"
@@ -193,7 +102,7 @@
                 />
 
 
-            <Button
+        <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -215,23 +124,158 @@
 
     </LinearLayout>
 
-    <Button
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Sauvegarder et quitter"
-        android:textSize="13sp"
+        android:gravity="center_vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+           >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Séries"
+                    android:id="@+id/SerieTxt"
+                    android:textSize="30dp"
+                    android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/nbSerie"
+                android:hint="1"
+                android:text="1"
+                android:textSize="30dp"
+                android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Calories"
+                    android:id="@+id/calorieTxt"
+                    android:textSize="30dp"
+                    android:textIsSelectable="true"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:hint="0"
+                        android:id="@+id/kl"
+                android:textSize="30dp"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Répétitions"
+            android:id="@+id/RepetitionTxt"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/nbRepet"
+            android:hint="0"
+
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_weight="1"
+        android:weightSum="3">
+
+        <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Go !"
+        android:textSize="15sp"
         android:background="@drawable/buttonshape"
-        android:drawableRight="@drawable/ic_action_save"
-        android:id="@+id/SaveAll" />
+        android:id="@+id/btnGo"
+       />
+
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:text="Sauvegarder et quitter"
+        android:paddingLeft="5dp"
+        android:textSize="13sp"
+        android:background="@drawable/buttonshape"
+        android:drawableRight="@drawable/ic_action_save"
+        android:id="@+id/SaveAll"
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="13sp"
         android:background="@drawable/buttonshape"
         android:drawableRight="@drawable/ic_action_remove"
         android:text="Quitter"
-        android:id="@+id/Exit"/>
+        android:id="@+id/Exit"
+        android:layout_weight="1" />
+
 </LinearLayout>
+    </LinearLayout>
